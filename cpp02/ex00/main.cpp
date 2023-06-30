@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 16:25:17 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/30 18:08:06 by dcella-d         ###   ########.fr       */
+/*   Created: 2023/06/30 18:14:46 by dcella-d          #+#    #+#             */
+/*   Updated: 2023/06/30 19:38:17 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#include "Fixed.hpp"
 
-class Contact
+int main( void )
 {
-	public:
-		Contact();
-		Contact(std::string name, std::string lastname, std::string nickname, int number, std::string darkest_secret);
-		std::string	str[4];
-		int			nbr;
-};
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
+
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return 0;
+}

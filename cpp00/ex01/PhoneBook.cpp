@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:25:17 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/25 16:53:38 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:56:54 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ int	PhoneBook::display_basic()
 		if (contacts[f].nbr > 0)
 		{
 			counter++;
-			std::cout << f;
+			std::cout << std::right << std::setw(5) << f;
 			std::cout << " | ";
 			while (++u < 3)
 			{
 				if (contacts[f].str[u].length() > 10)
-					std::cout << std::left << std::setw(11) << contacts[f].str[u].substr(0, 10) + ".";
+					std::cout << std::right << std::setw(10) << contacts[f].str[u].substr(0, 9) + ".";
 				else
-					std::cout << std::left << std::setw(11) << contacts[f].str[u];
-				if (u < 2)
-					std::cout << " | ";
+					std::cout << std::right << std::setw(10) << contacts[f].str[u];
+				// if (u < 2)
+				std::cout << " | ";
 			}
 			std::cout << std::endl;
 		}
