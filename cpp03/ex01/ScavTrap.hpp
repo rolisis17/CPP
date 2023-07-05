@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:21 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/05 18:03:45 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:50:08 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FIXED_HPP
-#define FIXED_HPP
+#ifndef	SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
 #include <iostream>
+#include "ClapTrap.hpp"
 
-class Fixed
+class ScavTrap : public ClapTrap
 {
 	private:
-		int	fixed_point_value;
-		static const int	fract_bits = 8;
+		std::string name;
+		unsigned int	hitpoints;
+		unsigned int	energypoints;
+		unsigned int	atkdamage;
 
 	public:
-		Fixed( void );
-		Fixed( int f );
-		Fixed( Fixed& other );
-		Fixed&	operator=( Fixed& other );
-		int		getRawBits( void );
-		void	setRawBits( int const raw );
-		~Fixed( void );
+		ScavTrap( void );
+		ScavTrap( std::string name1 );
+		ScavTrap( ScavTrap& other );
+		ScavTrap&	operator = ( const ScavTrap& other );
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
+		~ScavTrap( void );
 };
 
 #endif

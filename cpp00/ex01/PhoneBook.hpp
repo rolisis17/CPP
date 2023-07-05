@@ -6,9 +6,12 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:25:17 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/21 17:20:08 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:01:43 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include <iostream>
 #include <string>
@@ -27,3 +30,5 @@ class PhoneBook
 		int		display_full(int f);
 		int		parse_input(std::string str);
 };
+
+#endif

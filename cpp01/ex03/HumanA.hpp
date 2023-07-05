@@ -6,14 +6,15 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 21:21:39 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/27 15:56:59 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:00:41 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
-
 #ifndef HUMANA_H
 #define HUMANA_H
+
+#include <iostream>
+#include "Weapon.hpp"
 
 class	HumanA
 {
