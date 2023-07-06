@@ -1,7 +1,7 @@
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
-FLAGS = -Wall -Wextra -Werror -g -std=c++98
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+FLAGS = -Wall -Wextra -Werror -g -std=c++98 -Wshadow
 CC = c++
-NAME = ScravTrap
+NAME = FragTrap
 
 all: $(NAME)
 

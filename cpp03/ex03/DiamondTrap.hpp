@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:21 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/06 18:33:01 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:56:26 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef	DIAMONDTRAP_HPP
+#define DIAMONDTRAP_HPP
 
 #include <iostream>
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
+	private:
+		std::string		name;
+		unsigned int	hitpoints;
+		unsigned int	energypoints;
+		unsigned int	atkdamage;
+
 	public:
-		ScavTrap( void );
-		ScavTrap( std::string name1 );
-		ScavTrap( ScavTrap& other );
-		ScavTrap&	operator = ( const ScavTrap& other );
-		void	attack(const std::string& target);
-		void	guardGate( void );
-		~ScavTrap( void );
+		DiamondTrap( void );
+		DiamondTrap( std::string name1 );
+		DiamondTrap( DiamondTrap& other );
+		DiamondTrap&	operator = ( const DiamondTrap& other );
+		~DiamondTrap( void );
 };
 
 #endif

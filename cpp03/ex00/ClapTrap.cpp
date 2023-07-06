@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:19 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/05 20:09:27 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:21:22 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ClapTrap::attack(const std::string& target)
 		std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << atkdamage << " points of damage!" << std::endl;
 	}
 	else
-		std::cout << "ClapTrap " << name << "can do nothing because have " << energypoints << " energy points and " << hitpoints << " hit points." << std::endl;
+		std::cout << "ClapTrap " << name << " can do nothing because have " << energypoints << " energy points and " << hitpoints << " hit points." << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
@@ -60,7 +60,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		std::cout << "ClapTrap " << name << " is taking " << amount << " of damage and now it have " << hitpoints << " hit points." << std::endl;
 	}
 	else
-		std::cout << "ClapTrap " << name << "can do nothing because have " << energypoints << " energy points and " << hitpoints << " hit points." << std::endl;
+		std::cout << "ClapTrap " << name << " can do nothing because have " << energypoints << " energy points and " << hitpoints << " hit points." << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
@@ -72,7 +72,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << name << " repaired " << amount << " of hit points and now it have " << hitpoints << " hit points." << std::endl;
 	}
 	else
-		std::cout << "ClapTrap " << name << "can do nothing because have " << energypoints << " energy points and " << hitpoints << " hit points." << std::endl;
+		std::cout << "ClapTrap " << name << " can do nothing because have " << energypoints << " energy points and " << hitpoints << " hit points." << std::endl;
 }
 		
 ClapTrap::~ClapTrap()

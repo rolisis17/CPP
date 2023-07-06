@@ -6,12 +6,13 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:14:46 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/06 17:53:04 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:17:46 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main( void )
 {
@@ -23,6 +24,10 @@ int main( void )
 	ScavTrap Sric2("Sric2");
 	ScavTrap Sric3("Sric3");
 	ScavTrap& Sric4 = Sric1;
+	FragTrap Trip1("Trip1");
+	FragTrap Trip2("Trip2");
+	FragTrap Trip3("Trip3");
+	FragTrap Trip4("Trip4");
 
 	std::cout << std::endl << "NO DAMAGE FOR EVERYBODY!" << std::endl;
 	trap1.attack("trap2");
@@ -68,5 +73,24 @@ int main( void )
 	Sric2.guardGate();
 	Sric3.guardGate();
 	Sric4.guardGate();
+	std::cout << std::endl << "FragTrap Class Now!" << std::endl;
+	Trip1.attack("Trip2");
+	Trip2.takeDamage(20);
+	Trip1.attack("Trip2");
+	Trip2.takeDamage(20);
+	Trip3.attack("Trip4");
+	Trip4.takeDamage(20);
+	Trip2.attack("Trip1");
+	Trip1.takeDamage(20);
+	Trip2.beRepaired(10);
+	Trip1.beRepaired(10);
+	Trip3.beRepaired(10);
+	Trip4.beRepaired(10);
+	Trip4.attack("Trip3");
+	Trip3.takeDamage(20);
+	Trip1.highFivesGuys();
+	Trip2.highFivesGuys();
+	Trip3.highFivesGuys();
+	Trip4.highFivesGuys();
 	return 0;
 }
