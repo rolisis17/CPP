@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:21 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/05 20:45:36 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:05:43 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 class ClapTrap
 {
-	private:
-		std::string name;
+	protected:
+		std::string		name;
 		unsigned int	hitpoints;
 		unsigned int	energypoints;
 		unsigned int	atkdamage;
