@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                       :+:      :+:    :+:   */
+/*   Ice.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:21 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/06 17:56:26 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:03:45 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	DIAMONDTRAP_HPP
-#define DIAMONDTRAP_HPP
+#ifndef	ICE_HPP
+#define ICE_HPP
 
 #include <iostream>
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "AMateria.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap
+ICharacter;
+
+class Ice : public AMateria
 {
 	private:
-		std::string	name;
 
 	public:
-		DiamondTrap( void );
-		DiamondTrap( std::string name1 );
-		DiamondTrap( DiamondTrap& other );
-		DiamondTrap&	operator = ( const DiamondTrap& other );
-		void	whoAmI();
-		~DiamondTrap( void );
+		Ice( void );
+		Ice( std::string type );
+		Ice( Ice& other );
+		Ice&	operator=( Ice& other );
+		Ice&	clone( void ) const;
+		~Ice( void );
 };
 
 #endif

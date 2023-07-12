@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                       :+:      :+:    :+:   */
+/*   ICharacter.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:21 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/06 17:56:26 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:03:45 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	DIAMONDTRAP_HPP
-#define DIAMONDTRAP_HPP
+#ifndef	ICHARACTER_HPP
+#define ICHARACTER_HPP
 
 #include <iostream>
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "AMateria.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap
+class ICharacter
 {
-	private:
-		std::string	name;
-
 	public:
-		DiamondTrap( void );
-		DiamondTrap( std::string name1 );
-		DiamondTrap( DiamondTrap& other );
-		DiamondTrap&	operator = ( const DiamondTrap& other );
-		void	whoAmI();
-		~DiamondTrap( void );
+		virtual ~ICharacter() {}
+		virtual std::string const & getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
 };
 
 #endif

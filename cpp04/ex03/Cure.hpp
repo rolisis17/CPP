@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cure.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:21 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/06 17:56:26 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:03:45 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	DIAMONDTRAP_HPP
-#define DIAMONDTRAP_HPP
+#ifndef	CURE_HPP
+#define CURE_HPP
 
 #include <iostream>
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "AMateria.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap
+ICharacter;
+
+class Cure : public AMateria
 {
 	private:
-		std::string	name;
 
 	public:
-		DiamondTrap( void );
-		DiamondTrap( std::string name1 );
-		DiamondTrap( DiamondTrap& other );
-		DiamondTrap&	operator = ( const DiamondTrap& other );
-		void	whoAmI();
-		~DiamondTrap( void );
+		Cure( void );
+		Cure( int f );
+		Cure( Cure& other );
+		Cure&	operator=( Cure& other );
+		Cure&	clone( void ) const;
+		void	use( ICharacter& );
+		~Cure( void );
 };
 
 #endif

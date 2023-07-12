@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:21 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/06 17:05:43 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:53:19 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ class ClapTrap
 	public:
 		ClapTrap( void );
 		ClapTrap( std::string name1 );
+		ClapTrap( std::string name1, unsigned int hit, unsigned int energy, unsigned int atk );
 		ClapTrap( ClapTrap& other );
 		ClapTrap&	operator = ( const ClapTrap& other );
 		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
+		void	setSomething();
+		std::string	getName( void );
+		unsigned int	getAtk( void );
 		~ClapTrap( void );
 };
 

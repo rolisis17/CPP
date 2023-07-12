@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                       :+:      :+:    :+:   */
+/*   Character.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:13:21 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/06 17:56:26 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:03:45 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	DIAMONDTRAP_HPP
-#define DIAMONDTRAP_HPP
+#ifndef	CHARACTER_HPP
+#define CHARACTER_HPP
 
 #include <iostream>
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap
+class Character : public ICharacter
 {
 	private:
-		std::string	name;
+		std::string	Name;
 
 	public:
-		DiamondTrap( void );
-		DiamondTrap( std::string name1 );
-		DiamondTrap( DiamondTrap& other );
-		DiamondTrap&	operator = ( const DiamondTrap& other );
-		void	whoAmI();
-		~DiamondTrap( void );
+		Character( void );
+		Character( std::string type );
+		Character( Character& other );
+		ICharacter&	operator=( ICharacter& other );
+		std::string const & getName() const;
+		void equip(AMateria* m);
+		void unequip(int idx);
+		void	use( ICharacter& );
+		~Character( void );
 };
 
 #endif

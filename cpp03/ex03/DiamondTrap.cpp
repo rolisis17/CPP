@@ -12,19 +12,15 @@
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap( void ) : ScavTrap(), FragTrap(), hitpoints(FragTrap::hitpoints), energypoints(ScavTrap::energypoints), atkdamage(FragTrap::atkdamage)
+DiamondTrap::DiamondTrap( void ) : ClapTrap("Default", 100, 50, 30) // ScavTrap(), FragTrap()
 {
-	// hitpoints = FragTrap::hitpoints;
-	// energypoints = ScavTrap::energypoints;
-	// atkdamage = FragTrap::atkdamage;
 	std::cout << "DiamondTrap default constructor called." << std::endl;
+	
 }
 
-DiamondTrap::DiamondTrap( std::string name1 ) :  ScavTrap( name1 ), FragTrap( name1 ), name(name1),  hitpoints(FragTrap::hitpoints), energypoints(ScavTrap::energypoints), atkdamage(FragTrap::atkdamage)
+DiamondTrap::DiamondTrap( std::string name1 ) : ClapTrap(name1 + "_clap_name", 100, 50, 30)// ScavTrap(name1), FragTrap(name1)
 {
-	// hitpoints = FragTrap::hitpoints;
-	// energypoints = ScavTrap::energypoints;
-	// atkdamage = FragTrap::atkdamage;
+	DiamondTrap::name = name1;
 	std::cout << "DiamondTrap constructor called." << std::endl;
 }
 
@@ -43,6 +39,11 @@ DiamondTrap& DiamondTrap::operator = ( const DiamondTrap& other)
 		atkdamage = other.atkdamage;
 	}
 	return (*this);
+}
+
+void	DiamondTrap::whoAmI()
+{
+	std::cout << "I am DiamondTrap: " << DiamondTrap::name << ", and my ClapTrap name is: " << ClapTrap::name << std::endl;
 }
 	
 DiamondTrap::~DiamondTrap()

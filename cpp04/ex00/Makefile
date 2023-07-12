@@ -1,7 +1,7 @@
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp
 FLAGS = -Wall -Wextra -Werror -g -std=c++98 -Wshadow
 CC = c++
-NAME = DiamondTrap
+NAME = Animal
 
 all: $(NAME)
 
