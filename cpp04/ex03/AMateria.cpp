@@ -53,7 +53,7 @@ int	AMateria::getgroundItemsIndex( void )
 
 void	AMateria::dropItem( AMateria* dropped )
 {
-	if (groundItemsIndex > 100)
+	if (groundItemsIndex > 99)
 		delete groundItems[groundItemsIndex % 100];
 	groundItems[groundItemsIndex % 100] == dropped;
 	groundItemsIndex++;

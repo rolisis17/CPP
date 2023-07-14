@@ -33,7 +33,22 @@ ICharacter&	Character::operator=( ICharacter& other )
 {
 	std::cout << "Character Copy assignment constructor called" << std::endl;
 	if (this != &other)
+	{
 		Name = other.getName();
+		if (materiaNbr > 0)
+		{
+			for (int f = 0; f < 4; f++)
+			{
+				if (Slot[f] != NULL)
+					delete Slot[f];
+			}
+		}
+		for (int j = 0; j < 4; j++)
+		{
+			if (other.Slot[j] != NULL)
+				delete Slot[j];
+		}
+	}
 	return (*this);
 }
 

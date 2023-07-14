@@ -10,6 +10,8 @@ class AMateria
 {
 	protected:
 		std::string type;
+	
+	private:
 		static int	groundItemsIndex;
 		static AMateria	*groundItems[100];
 
