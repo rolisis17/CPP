@@ -26,8 +26,10 @@ class Ice : public AMateria
 		Ice( void );
 		Ice( std::string type );
 		Ice( Ice& other );
-		Ice&	operator=( Ice& other );
-		Ice&	clone( void ) const;
+		Ice( Ice* other );
+		Ice&		operator=( Ice& other );
+		AMateria*	clone( void ) const;
+		void		use(ICharacter& target);
 		~Ice( void );
 };
 

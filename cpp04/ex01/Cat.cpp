@@ -55,6 +55,11 @@ void	Cat::showIdeas( void )
 	brain->showIdeas();
 }
 
+void	Cat::makeSound() const
+{
+	std::cout << "Miauahahahahahaha!" << std::endl;
+}
+
 Cat::~Cat()
 {
 	delete brain;

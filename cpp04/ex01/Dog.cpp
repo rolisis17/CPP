@@ -57,6 +57,11 @@ void	Dog::showIdeas( void )
 	brain->showIdeas();
 }
 
+void	Dog::makeSound() const
+{
+	std::cout << "Auauahahahahahah!" << std::endl;
+}
+
 Dog::~Dog()
 {
 	delete brain;

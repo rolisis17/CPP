@@ -43,7 +43,28 @@ std::string	const & AMateria::getType( void ) const
 
 void AMateria::use(ICharacter& target)
 {
+	std::cout << "Cannot use this one." << std::endl;
+}
 
+int	AMateria::getgroundItemsIndex( void )
+{
+	return (groundItemsIndex);
+}
+
+void	AMateria::dropItem( AMateria* dropped )
+{
+	if (groundItemsIndex > 100)
+		delete groundItems[groundItemsIndex % 100];
+	groundItems[groundItemsIndex % 100] == dropped;
+	groundItemsIndex++;
+}
+
+void	AMateria::deleteGroundItems( void )
+{
+	int	f = groundItemsIndex;
+
+	while (f >= 0)
+		delete groundItems[f--];
 }
 
 AMateria::~AMateria()

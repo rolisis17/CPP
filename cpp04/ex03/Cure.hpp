@@ -24,11 +24,12 @@ class Cure : public AMateria
 
 	public:
 		Cure( void );
-		Cure( int f );
+		Cure( std::string type );
 		Cure( Cure& other );
-		Cure&	operator=( Cure& other );
-		Cure&	clone( void ) const;
-		void	use( ICharacter& );
+		Cure( Cure* other );
+		Cure&		operator=( Cure& other );
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
 		~Cure( void );
 };
 

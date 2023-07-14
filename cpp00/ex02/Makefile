@@ -7,15 +7,15 @@ CPP = -std=c++98
 
 all: $(NAME)
 
-$(NAME): $(SRCS) clean
+$(NAME): $(SRCS)
 	@c++ $(FLAGS) $(CPP) $(SRCS) -o $(NAME)
 	@$(eval TIMESTAMP := $(shell date +'%Y%m%d_%H%M%S'))
 	@./$(NAME) > $(LOGFILE)
 
 clean:
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 fclean: clean
-	rm -rf 2*$(LOG)
+	@rm -rf 2*$(LOG)
 
 re: fclean all

@@ -4,13 +4,14 @@
 #include <iostream>
 #include "Character.hpp"
 
-Character;
+class ICharacter;
 
 class AMateria
 {
 	protected:
 		std::string type;
-
+		static int	groundItemsIndex;
+		static AMateria	*groundItems[100];
 
 	public:
 		AMateria( void );
@@ -18,8 +19,11 @@ class AMateria
 		AMateria( AMateria& other);
 		AMateria&	operator=( AMateria& other );
 		std::string const & getType() const; //Returns the materia type
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);
+		virtual AMateria*	clone() const = 0;
+		virtual void		use(ICharacter& target);
+		int					getgroundItemsIndex( void );
+		void				dropItem( AMateria* dropped );
+		void				deleteGroundItems( void );
 		~AMateria( void );
 };
 #endif
