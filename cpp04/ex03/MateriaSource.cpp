@@ -12,14 +12,26 @@
 
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource( void ) : know({NULL}), knowNbr(0)
+MateriaSource::MateriaSource( void ) : IMateriaSource(), knowNbr(0)
 {
 	std::cout << "Materia source created;" << std::endl;
+	for (int f = 0; f < 4; f++)
+		know[f] = NULL;
 }
 
 MateriaSource& MateriaSource::operator=(MateriaSource& other)
 {
-	
+	for (int f = 0; f < 4; f++)
+	{
+		if (know[f] != NULL)
+			delete know[f];
+	}
+	for (int u = 0; u < 4; u++)
+	{
+		if (other.know[u] != NULL)
+			know[u] = other.know[u]->clone();
+	}
+	return (*this);
 }
 
 void        MateriaSource::learnMateria( AMateria* materia)

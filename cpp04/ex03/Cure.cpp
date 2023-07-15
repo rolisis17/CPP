@@ -12,7 +12,7 @@
 
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria("Cure")
+Cure::Cure(void) : AMateria("Cure")
 {
 	std::cout << "Cure Default constructor called" << std::endl;
 }
@@ -46,7 +46,7 @@ AMateria*	Cure::clone( void ) const
 	return new Cure(const_cast<Cure*>(this));
 }
 
-void	use(ICharacter& target)
+void	Cure::use(ICharacter& target)
 {
 	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

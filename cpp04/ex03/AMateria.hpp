@@ -8,12 +8,12 @@ class ICharacter;
 
 class AMateria
 {
-	protected:
-		std::string type;
-	
 	private:
 		static int	groundItemsIndex;
 		static AMateria	*groundItems[100];
+	
+	protected:
+		std::string type;
 
 	public:
 		AMateria( void );
@@ -26,6 +26,6 @@ class AMateria
 		int					getgroundItemsIndex( void );
 		void				dropItem( AMateria* dropped );
 		void				deleteGroundItems( void );
-		~AMateria( void );
+		virtual	~AMateria( void );
 };
 #endif

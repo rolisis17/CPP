@@ -17,6 +17,7 @@
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
 // extern AMateria *ground[100];
+class AMateria;
 
 class Character : public ICharacter
 {
@@ -29,13 +30,13 @@ class Character : public ICharacter
 		Character( void );
 		Character( std::string type );
 		Character( Character& other );
-		ICharacter&	operator=( ICharacter& other );
+		Character&	operator=( Character& other );
 		std::string const &	getName() const;
 		void	equip(AMateria* m);
 		void	unequip(int idx);
 		void	use(int idx, ICharacter& target);
 		int		getmateriaNbr( void );
-		int		Character::checkSlots( void );
+		int		checkSlots( void );
 
 		~Character( void );
 };

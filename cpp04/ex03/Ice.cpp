@@ -12,7 +12,7 @@
 
 #include "Ice.hpp"
 
-Ice::Ice(void) : AMateria("Cure")
+Ice::Ice(void) : AMateria("Ice")
 {
 	std::cout << "Ice Default constructor called" << std::endl;
 }
@@ -46,7 +46,7 @@ AMateria*	Ice::clone(void) const
 	return new Ice(const_cast<Ice*>(this));
 }
 
-void	use(ICharacter& target)
+void	Ice::use(ICharacter& target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

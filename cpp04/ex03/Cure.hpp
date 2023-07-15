@@ -16,8 +16,6 @@
 #include <iostream>
 #include "AMateria.hpp"
 
-ICharacter;
-
 class Cure : public AMateria
 {
 	private:

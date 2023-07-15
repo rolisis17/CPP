@@ -10,17 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-extern AMateria *ground[100];
+// extern AMateria *ground[100];
 #include "Character.hpp"
 
-Character::Character() : Slot({NULL, NULL, NULL, NULL}), materiaNbr(0)
+Character::Character() : ICharacter(), Name("Nameless"), materiaNbr(0)
 {
 	std::cout << "Character Default constructor called" << std::endl;
+	for (int f = 0; f < 4; f++)
+		Slot[f] = NULL;
 }
 
-Character::Character(std::string type) : Slot({NULL, NULL, NULL, NULL}), materiaNbr(0)
+Character::Character(std::string name) : ICharacter(), Name(name), materiaNbr(0)
 {
 	std::cout << "Character Constructor called" << std::endl;
+	for (int f = 0; f < 4; f++)
+		Slot[f] = NULL;
 }
 
 Character::Character( Character& other)
@@ -29,7 +33,7 @@ Character::Character( Character& other)
 	*this = other;
 }
 
-ICharacter&	Character::operator=( ICharacter& other )
+Character&	Character::operator=( Character& other )
 {
 	std::cout << "Character Copy assignment constructor called" << std::endl;
 	if (this != &other)
@@ -46,7 +50,7 @@ ICharacter&	Character::operator=( ICharacter& other )
 		for (int j = 0; j < 4; j++)
 		{
 			if (other.Slot[j] != NULL)
-				delete Slot[j];
+				Slot[j] = other.Slot[j]->clone();
 		}
 	}
 	return (*this);
@@ -100,9 +104,9 @@ int	Character::getmateriaNbr( void )
 	return (materiaNbr);
 }
 
-void	use(int idx, ICharacter& target)
+void	Character::use(int idx, ICharacter& target)
 {
-	// std::cout << "* heals " << Character.getName() << "’s wounds *" << std::endl;
+	Slot[idx]->use(target);
 }
 
 Character::~Character()

@@ -12,12 +12,12 @@
 
 #include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria() : type("")
 {
 	std::cout << "AMateria Default constructor called" << std::endl;
 }
 
-AMateria::AMateria( std::string const & type )
+AMateria::AMateria( std::string const & type ) : type(type)
 {
 	std::cout << "AMateria Constructor called" << std::endl;
 }
@@ -43,7 +43,7 @@ std::string	const & AMateria::getType( void ) const
 
 void AMateria::use(ICharacter& target)
 {
-	std::cout << "Cannot use this one." << std::endl;
+	std::cout << "Cannot use this one in " << target.getName() << std::endl;
 }
 
 int	AMateria::getgroundItemsIndex( void )
@@ -55,7 +55,7 @@ void	AMateria::dropItem( AMateria* dropped )
 {
 	if (groundItemsIndex > 99)
 		delete groundItems[groundItemsIndex % 100];
-	groundItems[groundItemsIndex % 100] == dropped;
+	groundItems[groundItemsIndex % 100] = dropped;
 	groundItemsIndex++;
 }
 

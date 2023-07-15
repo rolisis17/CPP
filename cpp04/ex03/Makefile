@@ -1,7 +1,7 @@
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
+SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 FLAGS = -Wall -Wextra -Werror -g -std=c++98 -Wshadow
 CC = c++
-NAME = Abs
+NAME = game
 
 all: $(NAME)
 
