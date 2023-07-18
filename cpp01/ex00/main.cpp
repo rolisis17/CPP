@@ -24,6 +24,6 @@ int	main( void )
 	Zombie1->announce();
 	Zombie2 = newZombie("Hungry Zombie");
 	Zombie2->announce();
-	Zombie1->~Zombie();
-	Zombie2->~Zombie();
+	delete Zombie1;
+	delete Zombie2;
 }

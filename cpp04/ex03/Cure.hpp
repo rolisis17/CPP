@@ -18,11 +18,8 @@
 
 class Cure : public AMateria
 {
-	private:
-
 	public:
 		Cure( void );
-		Cure( std::string type );
 		Cure( Cure& other );
 		Cure( Cure* other );
 		Cure&		operator=( Cure& other );

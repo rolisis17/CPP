@@ -23,7 +23,7 @@ class	HumanA
 		Weapon		&Gun;
 	
 	public:
-		HumanA(std::string name1, Weapon& Wpn) : name(name1), Gun(Wpn) {};
+		HumanA(std::string name1, Weapon& Wpn);
 		void	attack( void );
 		~HumanA();
 };

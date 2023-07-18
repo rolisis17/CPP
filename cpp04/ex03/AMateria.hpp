@@ -5,12 +5,13 @@
 #include "Character.hpp"
 
 class ICharacter;
+class AMateria;
 
 class AMateria
 {
 	private:
 		static int	groundItemsIndex;
-		static AMateria	*groundItems[100];
+		static AMateria*	groundItems[100];
 	
 	protected:
 		std::string type;
@@ -24,7 +25,7 @@ class AMateria
 		virtual AMateria*	clone() const = 0;
 		virtual void		use(ICharacter& target);
 		int					getgroundItemsIndex( void );
-		void				dropItem( AMateria* dropped );
+		void				dropItem( void );
 		void				deleteGroundItems( void );
 		virtual	~AMateria( void );
 };

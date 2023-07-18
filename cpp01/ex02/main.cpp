@@ -24,6 +24,6 @@ int	main(void)
 	std::cout << "REF:" << &stringREF << std::endl;
 	
 	std::cout << "hi:"  << hi << std::endl;
-	std::cout << "PTR:"  << stringPTR << std::endl;
+	std::cout << "PTR:"  << *stringPTR << std::endl;
 	std::cout << "REF:" << stringREF << std::endl;
 }

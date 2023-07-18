@@ -12,6 +12,10 @@
 
 #include "HumanA.hpp"
 
+HumanA::HumanA(std::string name1, Weapon& Wpn) : name(name1), Gun(Wpn)
+{
+}
+
 void	HumanA::attack( void )
 {
 	std::cout << name << " attacks with teir " << Gun.getType() << std::endl;

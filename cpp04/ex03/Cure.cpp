@@ -12,19 +12,14 @@
 
 #include "Cure.hpp"
 
-Cure::Cure(void) : AMateria("Cure")
+Cure::Cure(void) : AMateria("cure")
 {
-	std::cout << "Cure Default constructor called" << std::endl;
-}
-
-Cure::Cure(std::string type) : AMateria(type)
-{
-	std::cout << "Cure Constructor called" << std::endl;
+	// std::cout << "Cure Default constructor called" << std::endl;
 }
 
 Cure::Cure( Cure& other)
 {
-	std::cout << "Cure Copy constructor called" << std::endl;
+	// std::cout << "Cure Copy constructor called" << std::endl;
 	*this = other;
 }
 
@@ -35,7 +30,7 @@ Cure::Cure(Cure* other)
 
 Cure& Cure::operator=(Cure& other)
 {
-	std::cout << "Cure Copy assignment constructor called" << std::endl;
+	// std::cout << "Cure Copy assignment constructor called" << std::endl;
 	if (this != &other) //need to delete what was allocated before.
 		type = other.type;
 	return (*this);
@@ -53,5 +48,5 @@ void	Cure::use(ICharacter& target)
 
 Cure::~Cure()
 {
-	std::cout << "Cure Destructor called" << std::endl;
+	// std::cout << "Cure Destructor called" << std::endl;
 }

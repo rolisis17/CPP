@@ -15,27 +15,27 @@
 
 Character::Character() : ICharacter(), Name("Nameless"), materiaNbr(0)
 {
-	std::cout << "Character Default constructor called" << std::endl;
+	// std::cout << "Character Default constructor called" << std::endl;
 	for (int f = 0; f < 4; f++)
 		Slot[f] = NULL;
 }
 
 Character::Character(std::string name) : ICharacter(), Name(name), materiaNbr(0)
 {
-	std::cout << "Character Constructor called" << std::endl;
+	// std::cout << "Character Constructor called" << std::endl;
 	for (int f = 0; f < 4; f++)
 		Slot[f] = NULL;
 }
 
 Character::Character( Character& other)
 {
-	std::cout << "Character Copy constructor called" << std::endl;
+	// std::cout << "Character Copy constructor called" << std::endl;
 	*this = other;
 }
 
 Character&	Character::operator=( Character& other )
 {
-	std::cout << "Character Copy assignment constructor called" << std::endl;
+	// std::cout << "Character Copy assignment constructor called" << std::endl;
 	if (this != &other)
 	{
 		Name = other.getName();
@@ -90,7 +90,7 @@ void	Character::unequip(int idx)
 	{
 		if (Slot[idx] != NULL)
 		{
-			Slot[idx]->dropItem(Slot[idx]);
+			Slot[idx]->dropItem();
 			Slot[idx] = NULL;
 			materiaNbr--;
 		}
@@ -106,7 +106,10 @@ int	Character::getmateriaNbr( void )
 
 void	Character::use(int idx, ICharacter& target)
 {
-	Slot[idx]->use(target);
+	if (Slot[idx] != NULL)
+		Slot[idx]->use(target);
+	else
+		std::cout << "Nothing to use in slot " << idx << "." << std::endl;
 }
 
 Character::~Character()
@@ -119,5 +122,5 @@ Character::~Character()
 				delete Slot[f];
 		}
 	}
-	std::cout << "Character Destructor called" << std::endl;
+	// std::cout << "Character Destructor called" << std::endl;
 }

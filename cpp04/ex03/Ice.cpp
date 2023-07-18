@@ -12,19 +12,14 @@
 
 #include "Ice.hpp"
 
-Ice::Ice(void) : AMateria("Ice")
+Ice::Ice(void) : AMateria("ice")
 {
-	std::cout << "Ice Default constructor called" << std::endl;
-}
-
-Ice::Ice(std::string type) : AMateria(type)
-{
-	std::cout << "Ice Constructor called" << std::endl;
+	// std::cout << "Ice Default constructor called" << std::endl;
 }
 
 Ice::Ice(Ice& other)
 {
-	std::cout << "Ice Copy constructor called" << std::endl;
+	// std::cout << "Ice Copy constructor called" << std::endl;
 	*this = other;
 }
 
@@ -35,7 +30,7 @@ Ice::Ice(Ice* other)
 
 Ice& Ice::operator=(Ice& other)
 {
-	std::cout << "Ice Copy assignment constructor called" << std::endl;
+	// std::cout << "Ice Copy assignment constructor called" << std::endl;
 	if (this != &other)
 		type = other.type;
 	return (*this);
@@ -53,5 +48,5 @@ void	Ice::use(ICharacter& target)
 
 Ice::~Ice(void)
 {
-	std::cout << "Ice Destructor called" << std::endl;
+	// std::cout << "Ice Destructor called" << std::endl;
 }

@@ -18,11 +18,8 @@
 
 class Ice : public AMateria
 {
-	private:
-
 	public:
 		Ice( void );
-		Ice( std::string type );
 		Ice( Ice& other );
 		Ice( Ice* other );
 		Ice&		operator=( Ice& other );

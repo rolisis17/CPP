@@ -15,7 +15,7 @@
 int	main( void )
 {
 	int	N = 7;
-	Zombie *Zombie1 = zombieHorde(N, "Zombie");
+	Zombie *Zombie1 = zombieHorde(N, "Zombie ass");
 
 	while (N--)
 	{

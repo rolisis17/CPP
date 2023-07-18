@@ -12,6 +12,10 @@
 
 #include "HumanB.hpp"
 
+HumanB::HumanB( std::string name1 ) : name(name1), Gun(NULL)
+{
+}
+
 void	HumanB::setWeapon( Weapon &Wpn )
 {
 	Gun = &Wpn;

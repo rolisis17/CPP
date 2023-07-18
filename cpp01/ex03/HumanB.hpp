@@ -14,7 +14,7 @@
 #define HUMANB_H
 
 #include <iostream>
-#include "HumanA.hpp"
+#include "Weapon.hpp"
 
 class	HumanB
 {
@@ -23,7 +23,7 @@ class	HumanB
 		Weapon		*Gun;
 	
 	public:
-		HumanB( std::string name1 ) : name(name1), Gun(NULL) {};
+		HumanB( std::string name1 );
 		void	setWeapon( Weapon &Wpn );
 		void	attack( void );
 		~HumanB();

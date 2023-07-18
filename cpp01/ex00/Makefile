@@ -4,7 +4,6 @@ FLAGS = -Wall -Wextra -Werror -g
 CPP = -std=c++98
 
 all: $(NAME)
-#-o $(NOME)
 
 $(NAME): $(SRCS)
 	@c++ $(FLAGS) $(CPP) $(SRCS) -o $(NAME)

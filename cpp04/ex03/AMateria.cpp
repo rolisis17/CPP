@@ -12,25 +12,28 @@
 
 #include "AMateria.hpp"
 
+int AMateria::groundItemsIndex = 0;
+AMateria* AMateria::groundItems[100] = {};
+
 AMateria::AMateria() : type("")
 {
-	std::cout << "AMateria Default constructor called" << std::endl;
+	// std::cout << "AMateria Default constructor called" << std::endl;
 }
 
 AMateria::AMateria( std::string const & type ) : type(type)
 {
-	std::cout << "AMateria Constructor called" << std::endl;
+	// std::cout << "AMateria Constructor called" << std::endl;
 }
 
 AMateria::AMateria( AMateria& other) : type(other.type)
 {
-	std::cout << "AMateria Copy constructor called" << std::endl;
+	// std::cout << "AMateria Copy constructor called" << std::endl;
 	*this = other;
 }
 
 AMateria& AMateria::operator=(AMateria& other)
 {
-	std::cout << "AMateria Copy assignment constructor called" << std::endl;
+	// std::cout << "AMateria Copy assignment constructor called" << std::endl;
 	if (this != &other)
 		type = other.type;
 	return (*this);
@@ -51,11 +54,11 @@ int	AMateria::getgroundItemsIndex( void )
 	return (groundItemsIndex);
 }
 
-void	AMateria::dropItem( AMateria* dropped )
+void	AMateria::dropItem( void )
 {
 	if (groundItemsIndex > 99)
-		delete groundItems[groundItemsIndex % 100];
-	groundItems[groundItemsIndex % 100] = dropped;
+		delete &*groundItems[groundItemsIndex % 100];
+	groundItems[groundItemsIndex % 100] = this;
 	groundItemsIndex++;
 }
 
@@ -69,5 +72,5 @@ void	AMateria::deleteGroundItems( void )
 
 AMateria::~AMateria()
 {
-	std::cout << "AMateria Destructor called" << std::endl;
+	// std::cout << "AMateria Destructor called" << std::endl;
 }

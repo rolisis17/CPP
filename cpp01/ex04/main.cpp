@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdlib>
+// #include <cstdlib>
 #include <string>
 #include <iostream>
-#include <filesystem>
+// #include <filesystem>
 
 #include <fstream>
 #include <sstream>
@@ -68,8 +68,10 @@ int	main(int ac, char **av)
 		else
 			std::cout << "Fail to create .replace file." << std::endl;
 	}
-	else
+	else if (av[1] && ac == 4)
 		std::cout << "fail to open " << av[1] << " file." << std::endl;
+	else
+		std::cout << "try using ./replace <FileName> <ToFind> <ToReplace>" << std::endl;
 }
 
 // av[1] = filename to open

@@ -54,3 +54,12 @@ AMateria*   MateriaSource::createMateria( std::string const & materiaType )
 	}
 	return 0;
 }
+
+MateriaSource::~MateriaSource()
+{
+	for (int f = 0; f < 4; f++)
+	{
+		if (know[f] != NULL)
+			delete know[f];
+	}
+}
