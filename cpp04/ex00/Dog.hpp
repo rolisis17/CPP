@@ -11,6 +11,7 @@ class Dog : public Animal
 		Dog( std::string type );
 		Dog( Dog& other );
 		Dog&	operator=( Dog& other );
+		void	makeSound( void ) const;
 		~Dog( void );
 };
 

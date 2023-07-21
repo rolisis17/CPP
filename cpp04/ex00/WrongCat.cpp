@@ -36,6 +36,11 @@ WrongCat& WrongCat::operator=(WrongCat& other)
 	return (*this);
 }
 
+void	WrongCat::makeSound() const
+{
+	std::cout << "Hellyeah!" << std::endl;
+}
+
 WrongCat::~WrongCat()
 {
 	std::cout << type << " Destructor called" << std::endl;

@@ -6,7 +6,6 @@
 
 int main()
 {
-    // Animal yes;
     // const Animal* j = new Dog();
     // const Animal* i = new Cat();
     // delete j;//should not create a leak
@@ -42,12 +41,16 @@ int main()
     Cat* dog = new Cat();
     dog->newIdea("I WANT To DUCK");
     dog->showIdeas();
+    std::cout << std::endl;
     Cat* dog2 = new Cat(*dog);
     std::cout << std::endl;
     dog2->newIdea("But i dont!");
     std::cout << dog2->getType() << std::endl;
+    std::cout << std::endl;
     dog->showIdeas();
+    std::cout << std::endl;
     dog2->showIdeas();
+    std::cout << std::endl;
     delete dog;
     delete dog2;
 

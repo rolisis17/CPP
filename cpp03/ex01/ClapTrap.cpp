@@ -12,7 +12,7 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap( void ) : name("ass"), hitpoints(10), energypoints(10), atkdamage(0)
+ClapTrap::ClapTrap( void ) : name("Nameless"), hitpoints(10), energypoints(10), atkdamage(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }

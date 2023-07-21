@@ -38,13 +38,7 @@ WrongAnimal& WrongAnimal::operator=(WrongAnimal& other)
 
 void	WrongAnimal::makeSound() const
 {
-	if (type == "WrongCat")
-		std::cout << "HAHAHAHAHAHmingau!" << std::endl;
-	else if (type == "WrongDog")
-		std::cout << "HAHAHAHAHaaauuuu!" << std::endl;
-	else
-		std::cout << "Wrong WTF!" << std::endl;
-
+	std::cout << "Dafuk?" << std::endl;
 }
 
 std::string	WrongAnimal::getType( void ) const

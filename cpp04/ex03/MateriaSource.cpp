@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:51:54 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/14 19:11:36 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:31:48 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,13 @@ void        MateriaSource::learnMateria( AMateria* materia)
 	{
 		know[knowNbr] = materia;
 		knowNbr++;
+		std::cout << "Just learned " << materia->getType() << std::endl;
 	}
 	else
+	{
 		std::cout << "Cannot learn more." << std::endl;
+		delete materia;
+	}
 }
 
 AMateria*   MateriaSource::createMateria( std::string const & materiaType )
@@ -50,8 +54,13 @@ AMateria*   MateriaSource::createMateria( std::string const & materiaType )
 	for (int f = 0; f < knowNbr; f++)
 	{
 		if (materiaType == know[f]->getType())
+		{
+			std::cout << "Creating materia: " << know[f]->getType() << std::endl;
 			return know[f]->clone();
+			// delete const_cast<std::string*>(&materiaType);
+		}
 	}
+	std::cout << "Cannot create materia: " << materiaType << std::endl;
 	return 0;
 }
 

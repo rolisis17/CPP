@@ -22,7 +22,7 @@ Character::Character() : ICharacter(), Name("Nameless"), materiaNbr(0)
 
 Character::Character(std::string name) : ICharacter(), Name(name), materiaNbr(0)
 {
-	// std::cout << "Character Constructor called" << std::endl;
+	std::cout << "A new Character " << name << " was created." << std::endl;
 	for (int f = 0; f < 4; f++)
 		Slot[f] = NULL;
 }
@@ -39,12 +39,12 @@ Character&	Character::operator=( Character& other )
 	if (this != &other)
 	{
 		Name = other.getName();
-		if (materiaNbr > 0)
+		for (int f = 0; f < 4; f++)
 		{
-			for (int f = 0; f < 4; f++)
+			if (Slot[f] != NULL)
 			{
-				if (Slot[f] != NULL)
-					delete Slot[f];
+				delete Slot[f];
+				Slot[f] = NULL;
 			}
 		}
 		for (int j = 0; j < 4; j++)
@@ -52,6 +52,8 @@ Character&	Character::operator=( Character& other )
 			if (other.Slot[j] != NULL)
 				Slot[j] = other.Slot[j]->clone();
 		}
+		materiaNbr = other.materiaNbr;
+    	std::cout << getName() << " has been clone to " << other.getName() << std::endl;
 	}
 	return (*this);
 }
@@ -72,13 +74,21 @@ int	Character::checkSlots( void )
 
 void	Character::equip(AMateria* m)
 {
+	int f = -1;
 	int	openslot = checkSlots();
 	if (m == NULL)
 		return ;
 	if (materiaNbr < 4 && openslot < 4)
 	{
-		Slot[openslot] = m;
-		materiaNbr++;
+		while (++f < 4 && Slot[f] != m);
+		if (f < 4)
+    		std::cout << "You cannot re-equip the same item." << std::endl;
+		else
+		{
+			this->Slot[openslot] = m;
+			materiaNbr++;
+		}
+    	std::cout << getName() << " has equip " << m->getType() << "." << std::endl;
 	}
 	else
 		std::cout << "Inventory is full!" << std::endl;
@@ -88,15 +98,18 @@ void	Character::unequip(int idx)
 {
 	if (idx < 4)
 	{
+    	std::cout << getName() << " tryed to unequip slot " << idx << " item." << std::endl;
 		if (Slot[idx] != NULL)
 		{
 			Slot[idx]->dropItem();
 			Slot[idx] = NULL;
 			materiaNbr--;
+    		std::cout << getName() << " unequip and dropped slot 1 item." << std::endl;
 		}
 		else
 			std::cout << "This slot is empty!" << std::endl;
 	}
+    std::cout << "Ground now have " << Slot[0]->getgroundItemsIndex() << " item(s) dropped." << std::endl;
 }
 
 int	Character::getmateriaNbr( void )
@@ -106,21 +119,26 @@ int	Character::getmateriaNbr( void )
 
 void	Character::use(int idx, ICharacter& target)
 {
+    std::cout << getName() << " tryed to used slot " << idx << " item." << std::endl;
 	if (Slot[idx] != NULL)
+	{
 		Slot[idx]->use(target);
+    	std::cout << getName() << " used slot " << idx << " item." << std::endl;
+    	std::cout << getName() << " has attacked " << target.getName() << " with slot " << idx << std::endl;
+	}
 	else
 		std::cout << "Nothing to use in slot " << idx << "." << std::endl;
 }
 
 Character::~Character()
 {
-	if (materiaNbr > 0)
+	for (int f = 0; f < 4; f++)
 	{
-		for (int f = 0; f < 4; f++)
+		if (Slot[f] != NULL)
 		{
-			if (Slot[f] != NULL)
-				delete Slot[f];
+			delete Slot[f];
+			Slot[f] = NULL;
 		}
 	}
-	// std::cout << "Character Destructor called" << std::endl;
+    std::cout << getName() << " has been deleted." << std::endl;
 }

@@ -28,6 +28,11 @@ Dog::Dog( Dog& other) : Animal(other)
 	*this = other;
 }
 
+void	Dog::makeSound() const
+{
+	std::cout << "AUu!" << std::endl;
+}
+
 Dog& Dog::operator=(Dog& other)
 {
 	std::cout << "Dog Copy assignment constructor called" << std::endl;

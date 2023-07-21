@@ -28,6 +28,11 @@ Cat::Cat( Cat& other) : Animal(other)
 	*this = other;
 }
 
+void	Cat::makeSound() const
+{
+	std::cout << "MINHAU!" << std::endl;
+}
+
 Cat& Cat::operator=(Cat& other)
 {
 	std::cout << type << " Copy assignment constructor called" << std::endl;

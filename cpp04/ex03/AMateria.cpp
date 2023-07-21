@@ -68,6 +68,7 @@ void	AMateria::deleteGroundItems( void )
 
 	while (f >= 0)
 		delete groundItems[f--];
+    std::cout << "The ground has been cleaned. Items droppeds are gone." << std::endl;
 }
 
 AMateria::~AMateria()

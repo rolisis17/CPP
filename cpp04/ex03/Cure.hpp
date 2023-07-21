@@ -22,6 +22,7 @@ class Cure : public AMateria
 		Cure( void );
 		Cure( Cure& other );
 		Cure( Cure* other );
+		// Cure( const Cure* other );
 		Cure&		operator=( Cure& other );
 		AMateria*	clone() const;
 		void		use(ICharacter& target);

@@ -38,7 +38,7 @@ Animal& Animal::operator=(Animal& other)
 
 void	Animal::makeSound() const
 {
-	std::cout << "?????!" << std::endl;
+	std::cout << "?!" << std::endl;
 }
 
 std::string	Animal::getType( void ) const

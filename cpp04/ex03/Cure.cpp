@@ -28,6 +28,11 @@ Cure::Cure(Cure* other)
 	*this = *other;
 }
 
+// Cure::Cure( const Cure* other)
+// {
+// 	const_cast<Cure*>(this) = *other;
+// }
+
 Cure& Cure::operator=(Cure& other)
 {
 	// std::cout << "Cure Copy assignment constructor called" << std::endl;
@@ -38,7 +43,7 @@ Cure& Cure::operator=(Cure& other)
 
 AMateria*	Cure::clone( void ) const
 {
-	return new Cure(const_cast<Cure*>(this));
+	return new Cure();
 }
 
 void	Cure::use(ICharacter& target)
