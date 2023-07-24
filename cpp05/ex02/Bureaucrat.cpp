@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 12:33:45 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/24 14:38:59 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:59:20 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ Bureaucrat::Bureaucrat( std::string Name, int Grade ) : name(Name), grade(Grade)
 	std::cout << "A new Bureaucrat " << name << " has arrived. Grade : " << grade << "." << std::endl;
 }
 
-Bureaucrat::Bureaucrat( Bureaucrat& other) : name(other.name)
+Bureaucrat::Bureaucrat( Bureaucrat& other) : name(other.name), grade(other.grade)
 {
-	*this = other;
+	// *this = other;
 }
 Bureaucrat& Bureaucrat::operator=( const Bureaucrat& other)
 {
@@ -68,7 +68,7 @@ void	Bureaucrat::degrade( void )
 		throw GradeTooLowException();
 }
 
-void	Bureaucrat::signForm( Form& form )
+void	Bureaucrat::signForm( AForm& form )
 {
 	std::cout << name << " will try to sign " << form.getName() << "." << std::endl;
 	if (form.getSign() == false && grade <= form.getGradeToSign())
@@ -86,6 +86,23 @@ void	Bureaucrat::signForm( Form& form )
 	}
 }
 
+void	Bureaucrat::executeForm( AForm const & form )
+{
+	std::cout << name << " will try to execute " << const_cast<AForm&>(form).getName() << "." << std::endl;
+	if (const_cast<AForm&>(form).getSign() == false && grade <= const_cast<AForm&>(form).getGradeToSign())
+	{
+		const_cast<AForm&>(form).execute(*this);
+		std::cout << getName() << " executed " << const_cast<AForm&>(form).getName() << "." << std::endl;
+	}
+	else
+	{
+		std::cerr << getName() << " couldn't execute " << const_cast<AForm&>(form).getName() << " because ";
+		if (grade >= const_cast<AForm&>(form).getGradeToSign())
+			std::cout << "grade is not enough." << std::endl;
+		else
+			std::cout << "was already executed." << std::endl;
+	}
+}
 
 std::ostream& operator << (std::ostream& os, Bureaucrat& bureaucrat)
 {
