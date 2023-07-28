@@ -1,7 +1,7 @@
-SRCS = main.cpp ScalarConverter.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 CC = c++
-NAME = converter
+NAME = Bureaucrat
 
 all: $(NAME)
 

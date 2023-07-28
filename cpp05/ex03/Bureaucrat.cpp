@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 12:33:45 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/26 11:13:48 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:36:35 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void	Bureaucrat::promo( void )
 		std::cout << name << " has been promoted to grade " << grade << "." << std::endl;
 	}
 	else
+	{
+		// std::cout << "grade too high.";
 		throw GradeTooHighException();
+	}
 }
 
 void	Bureaucrat::degrade( void )
@@ -107,22 +110,18 @@ std::ostream& operator << (std::ostream& os, Bureaucrat& bureaucrat)
 	return os;
 }
 
-Bureaucrat::GradeTooHighException::GradeTooHighException()
-{
-}
+Bureaucrat::GradeTooHighException::GradeTooHighException() {}
 
-Bureaucrat::GradeTooLowException::GradeTooLowException()
-{
-}
+Bureaucrat::GradeTooLowException::GradeTooLowException() {}
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade too high!");
+	return ("\33[45mGrade too high!\33[0m");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade too low!");
+	return ("\33[36mGrade too low!\33[0m");
 }
 
 Bureaucrat::~Bureaucrat()
