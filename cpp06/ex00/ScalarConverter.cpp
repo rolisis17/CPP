@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:19:53 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/28 16:46:59 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:32:54 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,113 +26,141 @@ ScalarConverter& ScalarConverter::operator=( const ScalarConverter& other )
 	return (*this);
 }
 
-void	ScalarConverter::convert( std::string string )
+int	ScalarConverter::inf_handle(std::string str )
 {
-	if (checks(string))
-		return;
-}
-
-int	ScalarConverter::checks( std::string str )
-{
-	if (checkChar(str))
+	if (str == "inf" || str == "-inf" || str == "nan" || str == "+inf")
 	{
-		std::istringstream	iss(str);
-		char c;
-		iss >> c;
-		int i = static_cast<int>(c);
-		float d = static_cast<double>(c);
-		float f = static_cast<float>(c);
-	
-		std::cout << "Char: " << c << std::endl;
-		std::cout << "Int: " << i << std::endl;
-		std::cout << "Double: " << d << std::endl;
-		std::cout << "Float: " << f << ".0f" << std::endl;
-		
+		std::cout << "Char: impossible" << std::endl;
+		std::cout << "Int: impossible" << std::endl;
+		std::cout << "Float: " << str << "f" << std::endl;
+		std::cout << "Double: " << str << std::endl;
 		return 1;
 	}
-	else if (checkInt(str))
+	else if (str == "inff" || str == "-inff" || str == "nanf" || str == "+inff")
 	{
-		std::istringstream	iss(str);
-		int i;
-		iss >> i;
-		char c = static_cast<char>(i);
-		float d = static_cast<double>(i);
-		float f = static_cast<float>(i);
-	
-		std::cout << "Char: " << c << std::endl;
-		std::cout << "Int: " << i << std::endl;
-		std::cout << "Double: " << d << std::endl;
-		std::cout << "Float: " << f << ".0f" << std::endl;
-		return 2;
-	}
-	else if (checkFloat(str))
-	{
- 		std::cout << "Float" << std::endl;
-		return 3;
-	}
-	else if (checkDouble(str))
-	{
- 		std::cout << "Double" << std::endl;
-		return 3;
+		std::cout << "Char: impossible" << std::endl;
+		std::cout << "Int: impossible" << std::endl;
+		std::cout << "Float: " << str << std::endl;
+		std::cout << "Double: " << str.substr(0, str.length() - 1) << std::endl;
+		return 1;
 	}
 	return 0;
 }
 
-bool	ScalarConverter::checkDouble( std::string str )
+int	ScalarConverter::convert( std::string str )
 {
-	int f = -1;
-	int counter = 0;
-	while (str[++f])
+	std::istringstream iss(str);
+	int	i;
+	char c;
+	float f;
+	double d;
+	
+	// std::cout << (iss >> c) << std::endl;
+	// std::cout << iss.eof() << std::endl;
+	if (str.empty() || inf_handle(str))
+		return 0;
+	if (iss >> i && iss.eof())
 	{
-		if (!std::isdigit(str[f]) && str[f] != '.')
-			return false;
-		if (str[f] == '.')
-			counter++;
-		if (counter > 1)
-			return false;
+		c = static_cast<char>(i);
+		f = static_cast<float>(i);
+		d = static_cast<double>(i);
+	
+		if (std::isprint(c))
+			std::cout << "Char: " << c << std::endl;
+		else
+			std::cout << "Char: Non displayable" << std::endl;
+		std::cout << "Int: " << i << std::endl;
+		if (f > 0)
+			std::cout << "Float: " << f << ".0f" << std::endl;
+		else
+			std::cout << "Float: 0.0f" << std::endl;
+		std::cout << "Double: " << d << ".0" << std::endl;
+		return 1;
 	}
-	return true;
-}
-
-bool	ScalarConverter::checkFloat( std::string str )
-{
-	size_t f = -1;
-	while (str[++f])
+	iss.clear();
+	iss.seekg(0);
+	if (iss >> d && iss.eof())
 	{
-		if (!(std::isdigit(str[f])) && (str[f] != '.'))
-		{
-			if (str[f] == 'f' && str.length() - 1 == f)
-				return true;
-			return false;	
+		i = static_cast<int>(d);
+		c = static_cast<char>(d);
+		f = static_cast<double>(d);
+	
+		if (std::isprint(c))
+			std::cout << "Char: " << c << std::endl;
+		else
+			std::cout << "Char: Non displayable" << std::endl;
+		std::cout << "Int: " << i << std::endl;
+		if (f > 0)
+			std::cout << "Float: " << f << "f" << std::endl;
+		else
+			std::cout << "Float: 0.0f" << std::endl;
+		std::cout << "Double: " << d << std::endl;
+		return 1;
+	}
+	iss.clear();
+	iss.seekg(0);
+	if ((!str.empty()) && (str[str.length() - 1] == 'f'))
+	{
+		str.erase(str.length() - 1);
+		std::istringstream iss(str);
+		int		ess;
+		float	rss;
+		iss >> rss;
+		if (iss >> ess && iss.eof())
+			return (convert(str));
+		iss.clear();
+		iss.seekg(0);
+		if((iss >> f && iss.eof()) || (!zerosearch(str)))
+ 		{
+			i = static_cast<int>(f);
+			c = static_cast<char>(f);
+			d = static_cast<double>(f);
+		
+			if (std::isprint(c))
+				std::cout << "Char: " << c << std::endl;
+			else
+				std::cout << "Char: Non displayable" << std::endl;
+			std::cout << "Int: " << i << std::endl;
+			if (f > 0 && rss != ess)
+				std::cout << "Float: " << f << "f" << std::endl;
+			else
+				std::cout << "Float: 0.0f" << std::endl;
+			std::cout << "Double: " << d << std::endl;
+			return 1;
 		}
 	}
-	return false;
+	iss.clear();
+	iss.seekg(0);
+	if (iss >> c && (str.length() == 1))
+	{
+		i = static_cast<int>(c);
+		f = static_cast<float>(c);
+		d = static_cast<double>(c);
+	
+		if (std::isprint(c))
+			std::cout << "Char: " << c << std::endl;
+		else
+			std::cout << "Char: Non displayable" << std::endl;
+		std::cout << "Int: " << i << std::endl;
+		if (f == 0)
+			std::cout << "Float: 0.0f" << std::endl;
+		else
+			std::cout << "Float: " << f << ".0f" << std::endl;
+		std::cout << "Double: " << d << ".0" << std::endl;
+		return 1;
+	}
+	std::cerr << "Invalid Input." << std::endl;
+	return 0;
 }
 
-bool	ScalarConverter::checkChar( std::string str )
+int	ScalarConverter::zerosearch( std::string str )
 {
 	int	counter = 0;
-	int	f = -1;
-
-	while (str[++f])
-	{
-		if (!std::isalpha(str[f]))
-			return false;
+	while (str[str.length() - 1 - counter] == '0')
 		counter++;
-	}
-	if (counter > 1)
-		return false;
-	return true;
-}
-
-bool	ScalarConverter::checkInt( std::string str )
-{
-	for (size_t f = 0; f < str.length(); f++)
-	{
-		if (!std::isdigit(str[f]))
-			return false;
-	}
-	return true;
+	if (str[str.length() - 2 - counter] == '.')
+		return (convert(str.substr(0, str.length() - 2)));
+	return 0;
 }
 
 ScalarConverter::~ScalarConverter() {}
