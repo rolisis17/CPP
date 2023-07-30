@@ -27,7 +27,7 @@ AForm::AForm( std::string Name, int tosign, int toexec ) : name(Name), sign(fals
 
 AForm::AForm( const AForm& other ) : name(other.name), sign(other.sign), GradeToSign(other.GradeToSign), GradeToExec(other.GradeToExec)
 {
-	// *this = other;
+	*this = other;
 }
 
 AForm& AForm::operator=( const AForm& other )
@@ -106,12 +106,12 @@ AForm::GradeTooLowException::GradeTooLowException()
 
 const char* AForm::GradeTooHighException::what() const throw()
 {
-	return ("Grade too high!");
+	return ("\33[45mGrade too high!\33[0m");
 }
 
 const char* AForm::GradeTooLowException::what() const throw()
 {
-	return ("Grade too low!");
+	return ("\33[36mGrade too low!\33[0m");
 }
 
 std::ostream&	operator << (std::ostream& os, AForm& ik)

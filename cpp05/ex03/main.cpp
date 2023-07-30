@@ -21,11 +21,12 @@ int main()
         std::cout << std::endl;
         Bureaucrat bureau2("Diane", 130);
         std::cout << std::endl;
-        AForm* form1 = &intern1.makeForm("presidential pardon", "Cunt");
+        AForm* form1 = &intern1.makeForm("presidential pardon", "Hazzor5");
         std::cout << std::endl;
-        AForm* form2 = &intern1.makeForm("robotomy request", "Cunt");
+        AForm* form2 = &intern1.makeForm("robotomy request", "Diane");
         std::cout << std::endl;
-        AForm* form3 = &intern1.makeForm("shrubbery creation", "Cunt");
+        AForm* form3 = &intern1.makeForm("shrubbery creation", "~e~");
+        RobotomyRequestForm form44("Cnt223");
 
         std::cout << std::endl;
         bureau1.promo();
@@ -58,9 +59,11 @@ int main()
         std::cout << bureau1.getGrade() << std::endl;
         std::cout << std::endl;
         std::cout << bureau2.getGrade() << std::endl;
-        std::cout << bureau1 << std::endl;
+        std::cout << bureau1 << std::endl << std::endl;
 
-        std::cout << bureau1 << std::endl;
+        // std::cout << bureau1 << std::endl;
+        std::cout << *form3 << std::endl;
+        std::cout << form44 << std::endl;
         std::cout << std::endl;
         delete form1;
         std::cout << std::endl;

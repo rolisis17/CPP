@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:19:53 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/29 17:32:54 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/07/30 18:53:25 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ScalarConverter::convert( std::string str )
 		else
 			std::cout << "Char: Non displayable" << std::endl;
 		std::cout << "Int: " << i << std::endl;
-		if (f > 0)
+		if (f != 0)
 			std::cout << "Float: " << f << ".0f" << std::endl;
 		else
 			std::cout << "Float: 0.0f" << std::endl;
@@ -85,12 +85,14 @@ int	ScalarConverter::convert( std::string str )
 		c = static_cast<char>(d);
 		f = static_cast<double>(d);
 	
+		if (zerosearch(str, 0))
+			return zerosearch(str, 1);
 		if (std::isprint(c))
 			std::cout << "Char: " << c << std::endl;
 		else
 			std::cout << "Char: Non displayable" << std::endl;
 		std::cout << "Int: " << i << std::endl;
-		if (f > 0)
+		if (f != 0)
 			std::cout << "Float: " << f << "f" << std::endl;
 		else
 			std::cout << "Float: 0.0f" << std::endl;
@@ -110,7 +112,7 @@ int	ScalarConverter::convert( std::string str )
 			return (convert(str));
 		iss.clear();
 		iss.seekg(0);
-		if((iss >> f && iss.eof()) || (!zerosearch(str)))
+		if((iss >> f && iss.eof()) && (!zerosearch(str, 0)))
  		{
 			i = static_cast<int>(f);
 			c = static_cast<char>(f);
@@ -149,17 +151,49 @@ int	ScalarConverter::convert( std::string str )
 		std::cout << "Double: " << d << ".0" << std::endl;
 		return 1;
 	}
-	std::cerr << "Invalid Input." << std::endl;
+	if (zerosearch(str , 0))
+		zerosearch(str , 1);
+	else
+		std::cerr << "Invalid Input." << std::endl;
 	return 0;
 }
 
-int	ScalarConverter::zerosearch( std::string str )
+int	ScalarConverter::zerosearch( std::string str, int f )
 {
+	char c;
+	int	finddot = 0;
+	int	dot = 0;
 	int	counter = 0;
-	while (str[str.length() - 1 - counter] == '0')
-		counter++;
-	if (str[str.length() - 2 - counter] == '.')
-		return (convert(str.substr(0, str.length() - 2)));
+	// while (str[finddot] && str[finddot] != '.')
+	// 	finddot++;
+	// if (str[finddot].e)
+	// while (str[finddot + 1 + counter] == '0')
+	// 	counter++;
+	std::istringstream iss(str);
+	while (iss >> c && !iss.eof())
+	{
+		if (!dot && c != '.')
+			finddot++;
+		else if (!dot && c == '.')
+		{
+			dot++;
+			continue;
+		}
+		if (dot && c == '0')
+			counter++;
+		else if (dot && c != '0')
+			break;
+	}
+	// std::cout << finddot << std::endl;
+	if (f != 0 && iss.eof())
+		return convert(str);
+	// while (iss >> c && std::cout << c && !iss.eof() && c == '0')
+		// counter++;
+	// std::cout << counter << std::endl;
+	if (f != 0 && (finddot < 3 && counter > 4))
+		return convert(str.substr(0, finddot));
+	else if (f == 0 && counter > 4)
+		return 1;
 	return 0;
 }
 
