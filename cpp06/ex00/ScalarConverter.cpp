@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:19:53 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/07/30 18:53:25 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:44:30 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,11 @@ int	ScalarConverter::convert( std::string str )
 			std::cout << "Char: Non displayable" << std::endl;
 		std::cout << "Int: " << i << std::endl;
 		if (f != 0)
-			std::cout << "Float: " << f << ".0f" << std::endl;
+			std::cout << "Float: " << f << "f" << std::endl
+			<< "Double: " << d << std::endl;
 		else
-			std::cout << "Float: 0.0f" << std::endl;
-		std::cout << "Double: " << d << ".0" << std::endl;
+			std::cout << "Float: 0.0f" << std::endl
+			<< "Double: 0.0" << std::endl;
 		return 1;
 	}
 	iss.clear();
@@ -93,10 +94,11 @@ int	ScalarConverter::convert( std::string str )
 			std::cout << "Char: Non displayable" << std::endl;
 		std::cout << "Int: " << i << std::endl;
 		if (f != 0)
-			std::cout << "Float: " << f << "f" << std::endl;
+			std::cout << "Float: " << f << "f" << std::endl
+			<< "Double: " << d << std::endl;
 		else
-			std::cout << "Float: 0.0f" << std::endl;
-		std::cout << "Double: " << d << std::endl;
+			std::cout << "Float: 0.0f" << std::endl
+			<< "Double: 0.0" << std::endl;
 		return 1;
 	}
 	iss.clear();
@@ -123,11 +125,12 @@ int	ScalarConverter::convert( std::string str )
 			else
 				std::cout << "Char: Non displayable" << std::endl;
 			std::cout << "Int: " << i << std::endl;
-			if (f > 0 && rss != ess)
-				std::cout << "Float: " << f << "f" << std::endl;
+			if (f != 0)
+				std::cout << "Float: " << f << "f" << std::endl
+				<< "Double: " << d << std::endl;
 			else
-				std::cout << "Float: 0.0f" << std::endl;
-			std::cout << "Double: " << d << std::endl;
+				std::cout << "Float: 0.0f" << std::endl
+				<< "Double: 0.0" << std::endl;
 			return 1;
 		}
 	}
@@ -144,11 +147,12 @@ int	ScalarConverter::convert( std::string str )
 		else
 			std::cout << "Char: Non displayable" << std::endl;
 		std::cout << "Int: " << i << std::endl;
-		if (f == 0)
-			std::cout << "Float: 0.0f" << std::endl;
+		if (f != 0)
+			std::cout << "Float: " << f << "f" << std::endl
+			<< "Double: " << d << std::endl;
 		else
-			std::cout << "Float: " << f << ".0f" << std::endl;
-		std::cout << "Double: " << d << ".0" << std::endl;
+			std::cout << "Float: 0.0f" << std::endl
+			<< "Double: 0.0" << std::endl;
 		return 1;
 	}
 	if (zerosearch(str , 0))
@@ -185,8 +189,14 @@ int	ScalarConverter::zerosearch( std::string str, int f )
 			break;
 	}
 	// std::cout << finddot << std::endl;
-	if (f != 0 && iss.eof())
-		return convert(str);
+	if (iss.eof())
+	{
+		if (dot && f != 0)
+			return convert(str.substr(0, finddot));
+		else if (dot && f == 0)
+			return 1;
+		// return convert(str);
+	}
 	// while (iss >> c && std::cout << c && !iss.eof() && c == '0')
 		// counter++;
 	// std::cout << counter << std::endl;
