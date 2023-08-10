@@ -20,7 +20,7 @@ class TargetGenerator
 
 		void learnTargetType( ATarget *target );
 		void forgetTargetType( std::string const &targets_name );
-		ATarget *createTarget( std::string const &targets_name );
+		ATarget *createTarget( const std::string &targets_name );
 };
 
 #endif

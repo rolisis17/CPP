@@ -1,8 +1,8 @@
 SRCS = main.cpp Warlock.cpp ATarget.cpp Dummy.cpp Fwoosh.cpp ASpell.cpp \
 Fireball.cpp BrickWall.cpp SpellBook.cpp TargetGenerator.cpp \
 Polymorph.cpp
-FLAGS = -Wall -Wextra -Werror -g -std=c++98
-CC = c++
+FLAGS = -Wall -Wextra -Werror -g
+CC = g++
 NAME = test
 
 all: $(NAME)

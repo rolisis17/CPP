@@ -17,7 +17,7 @@ class ATarget
 		ATarget( ATarget const &other );
 		ATarget& operator=( ATarget const &other );
 		std::string const &getType( void ) const;
-		void	getHitBySpell( ASpell const &spell ) const;
+		void	getHitBySpell( const ASpell& spell ) const;
 		virtual ATarget *clone( void ) const = 0;
 		virtual ~ATarget();
 };

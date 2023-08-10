@@ -20,7 +20,7 @@ void TargetGenerator::forgetTargetType( std::string const &targets_name )
 	array.erase(targets_name);
 }
 
-ATarget *TargetGenerator::createTarget( std::string const &targets_name )
+ATarget *TargetGenerator::createTarget( const std::string &targets_name )
 {
 	std::map<std::string, ATarget *>::iterator it = array.find(targets_name);
 	if (it != array.end())
