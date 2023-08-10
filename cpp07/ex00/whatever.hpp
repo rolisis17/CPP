@@ -14,7 +14,7 @@
 #define WHATEVER_HPP
 
 template <typename Type>
-void swap(Type a, Type b)
+void swap(Type& a, Type& b)
 {
 	Type tmp;
 	
@@ -26,13 +26,13 @@ void swap(Type a, Type b)
 template <typename Type>
 Type min(Type a, Type b)
 {
-	a < b ? a : b;
+	return a < b ? a : b;
 }
 
 template <typename Type>
 Type max(Type a, Type b)
 {
-	a > b ? a : b;
+	return a > b ? a : b;
 }
 
 #endif

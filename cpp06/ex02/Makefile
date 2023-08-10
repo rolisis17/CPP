@@ -1,7 +1,7 @@
-SRCS = main.cpp Serializer.cpp
+SRCS = main.cpp Base.cpp
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 CC = c++
-NAME = serializer
+NAME = identify
 
 all: $(NAME)
 
@@ -11,7 +11,6 @@ $(NAME): $(SRCS)
 
 clean:
 	@rm -rf $(NAME)
-	@rm -rf *_shrubbery
 	@echo "Undone!"
 
 re: clean all

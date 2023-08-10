@@ -11,7 +11,6 @@ $(NAME): $(SRCS)
 
 clean:
 	@rm -rf $(NAME)
-	@rm -rf *_shrubbery
 	@echo "Undone!"
 
 re: clean all

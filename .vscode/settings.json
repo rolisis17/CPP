@@ -80,7 +80,11 @@
     "thread": "cpp",
     "typeindex": "cpp",
     "valarray": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "*.tpp": "cpp",
+    "format": "cpp",
+    "strstream": "cpp",
+    "semaphore": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

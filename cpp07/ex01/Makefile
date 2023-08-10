@@ -1,7 +1,7 @@
-SRCS = main.cpp ScalarConverter.cpp
+SRCS = main.cpp
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 CC = c++
-NAME = convert
+NAME = array
 
 all: $(NAME)
 

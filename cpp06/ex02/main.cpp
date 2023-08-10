@@ -4,13 +4,18 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <ctime>
+#include <cstdlib>
 
-int main(int ac, char **av) {
-    if (ac > 1)
-    {
-        Base *aclas = new A;
+int main() {
+    std::srand(static_cast<unsigned int>(std::time(0)));
 
-        
-    }
+    Base* something = generate();
+
+    std::cout << "identify: ";
+    identify(something);
+    Base& something2 = *generate();
+    std::cout << "identify: ";
+    identify(&something2);
     return 0;
 }
