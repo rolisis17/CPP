@@ -1,12 +1,12 @@
 SRCS = main.cpp
-FLAGS = -Wall -Wextra -Werror -g
-CC = c++
+FLAGS = -Wall -Wextra -Werror -g -std=c++11
+CC = g++
 NAME = project
 
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@$(CC) $(FLAGS) -lncurses $(SRCS) -o $(NAME)
+	@$(CC) $(FLAGS) $(SRCS) -o $(NAME) -lncurses
 	@echo "Done!"
 
 clean:
