@@ -4,12 +4,18 @@
 template <typename T>
 class Array
 {
+	private:
+		T *arr;
+		int arr_lenght;
+
 	public:
 		Array();
 		Array( unsigned int n );
-		Array( const Array& other );
-		Array& operator=( const Array& other );
+		Array( const Array<T>& other );
+		Array<T>& operator=( const Array<T>& other );
 		~Array();
+		T& operator[](int index);
+		int	size( void ) const;
 };
 
 #include "Array.tpp"

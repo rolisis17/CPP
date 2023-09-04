@@ -6,7 +6,7 @@ NAME = project
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@$(CC) $(FLAGS) $(SRCS) -o $(NAME) -lncurses
+	@$(CC) $(FLAGS) $(SRCS) -o $(NAME) -I/usr/local/SFML-2.6.0/include -L/usr/local/SFML-2.6.0/lib -lsfml-window -lsfml-system
 	@echo "Done!"
 
 clean:

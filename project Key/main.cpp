@@ -1,19 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cstdlib>
-#include <unistd.h>
+#include <SFML/Window.hpp>
 #include <signal.h>
-#include <ncurses.h>
-#include <sys/stat.h>
 
 std::ofstream new_file;
 bool terminateRequested = false;
+
 void handleSignal(int signal) {
     if (signal == SIGTERM || signal == SIGINT) {
-        // Close the file before termination
-        new_file.close();
-        exit(0);
+        // Set the flag to indicate termination is requested
+        terminateRequested = true;
     }
 }
 
@@ -30,32 +27,18 @@ int main() {
         return 1;
     }
 
-    // Set terminal to non-blocking input
-    struct termios term_settings;
-    tcgetattr(STDIN_FILENO, &term_settings);
-    term_settings.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &term_settings);
-    int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
-    fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
+    sf::Window window(sf::VideoMode(1, 1), "", sf::Style::None); // Create a hidden window
 
-    char ch;
-    while (true) {
-        ssize_t n = read(STDIN_FILENO, &ch, 1);
-        if (n > 0) {
-            new_file.put(ch);
-            new_file.flush();
-        }
-
-        // Check for termination signal
-        if (terminateRequested) {
-            break;
+    while (!terminateRequested) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::KeyPressed) {
+                char ch = static_cast<char>(event.key.code);
+                new_file.put(ch);
+                new_file.flush();
+            }
         }
     }
-
-    // Restore terminal settings
-    tcgetattr(STDIN_FILENO, &term_settings);
-    term_settings.c_lflag |= (ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &term_settings);
 
     // Cleanup
     new_file.close();
