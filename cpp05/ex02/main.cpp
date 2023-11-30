@@ -18,24 +18,30 @@ int main()
     {
         bureau1 = Bureaucrat("Jess", 2);
         bureau2 = Bureaucrat("Diane", 130);
+        std::cout << std::endl;
         AForm* form1 = new PresidentialPardonForm("Cunt");
         AForm* form2 = new RobotomyRequestForm("Cunt");
         AForm* form3 = new ShrubberyCreationForm("Cunt");
+        std::cout << std::endl;
 
         bureau1.promo();
         bureau2.promo();
-        // form2->beSign(bureau1);
+        std::cout << std::endl;
+        form2->beSign(bureau1);
         bureau1.signForm(*form2);
         bureau1.signForm(*form1);
         bureau2.signForm(*form2);
         bureau2.signForm(*form3);
+        std::cout << std::endl;
         AForm* form4;
         form4 = form1;
+        std::cout << std::endl;
         bureau1.executeForm(*form1);
         bureau1.executeForm(*form4);
         bureau1.executeForm(*form2);
         bureau2.executeForm(*form3);
         
+        std::cout << std::endl;
  
         std::cout << bureau1.getGrade() << std::endl;
         std::cout << bureau2.getGrade() << std::endl;

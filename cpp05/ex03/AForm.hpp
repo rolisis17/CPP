@@ -31,10 +31,10 @@ class AForm
 		AForm( std::string name, int tosign, int toexec );
 		AForm( const AForm& other );
 		AForm& operator=( const AForm& other );
-		std::string	getName( void );
-		bool		getSign( void );
-		int			getGradeToSign( void );
-		int			getGradeToExec( void );
+		std::string	getName( void ) const;
+		bool		getSign( void ) const;
+		int			getGradeToSign( void ) const;
+		int			getGradeToExec( void ) const;
 		void		beSign( Bureaucrat& bu );
 		virtual void	execute( Bureaucrat const & executor ) const = 0;
 		void		checkExecute( Bureaucrat const & executor );
@@ -53,6 +53,7 @@ class AForm
 			GradeTooLowException();
 			virtual const char* what() const throw();
 	};
+
 };
 
 std::ostream&	operator << (std::ostream& os, AForm& ik );

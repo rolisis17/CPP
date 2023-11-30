@@ -37,7 +37,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 
 void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
-	std::cout << target << " has been perdoned by " << const_cast<Bureaucrat&>(executor).getName() << "." << std::endl;
+	std::cout << target << " has been perdoned by " << executor.getName() << "." << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()

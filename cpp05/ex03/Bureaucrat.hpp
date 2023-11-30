@@ -31,8 +31,8 @@ class Bureaucrat
         Bureaucrat( std::string Name, int Grade );
         Bureaucrat( Bureaucrat& other);
         Bureaucrat& operator=( const Bureaucrat& other);
-        std::string getName( void );
-        int         getGrade( void );
+        std::string getName( void ) const;
+        int         getGrade( void ) const;
         void        promo( void );
         void        degrade( void );
 		void		signForm( AForm& form );

@@ -1,8 +1,7 @@
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp \
-ShrubberyCreationForm.cpp
+SRCS = main.cpp
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 CC = c++
-NAME = Bureaucrat
+NAME = easyfind
 
 all: $(NAME)
 
@@ -12,7 +11,6 @@ $(NAME): $(SRCS)
 
 clean:
 	@rm -rf $(NAME)
-	@rm -rf *_shrubbery
 	@echo "Undone!"
 
 re: clean all

@@ -29,9 +29,9 @@ Intern& Intern::operator=( const Intern& other )
 	return (*this);
 }
 
-AForm&	Intern::makeForm( std::string formName, std::string formTarget )
+AForm*	Intern::makeForm( std::string formName, std::string formTarget )
 {
-	typedef AForm& (Intern::*funct_ptr)(std::string);
+	typedef AForm* (Intern::*funct_ptr)(std::string);
 	int	f = -1;
 	funct_ptr pt_arr[4];
 	std::string arr[3];
@@ -43,33 +43,42 @@ AForm&	Intern::makeForm( std::string formName, std::string formTarget )
 	pt_arr[1] = &Intern::Robotomy;
 	pt_arr[2] = &Intern::Shrubbery;
 	pt_arr[3] = &Intern::wrongInput;
-	while (++f < 4 && formName != arr[f]);
+	while (++f < 3 && formName != arr[f]);
 	return ((this->*pt_arr[f])(formTarget));
 }
 
-AForm&	Intern::Presidential( std::string target )
+Intern::WrongForm::WrongForm()
+{
+}
+
+const char* Intern::WrongForm::what() const throw()
+{
+	return ("\33[47mWrong Form!\33[0m");
+}
+
+AForm*	Intern::Presidential( std::string target )
 {
 	std::cout << "Intern creates PresidentialPardonForm." << std::endl;
-	return *(new PresidentialPardonForm(target));
+	return (new PresidentialPardonForm(target));
 }
 
-AForm&	Intern::Robotomy( std::string target )
+AForm*	Intern::Robotomy( std::string target )
 {
 	std::cout << "Intern creates RobotomyRequestForm." << std::endl;
-	return *(new RobotomyRequestForm(target));
+	return (new RobotomyRequestForm(target));
 }
 
-AForm&	Intern::Shrubbery( std::string target )
+AForm*	Intern::Shrubbery( std::string target )
 {
 	std::cout << "Intern creates ShrubberyCreationForm." << std::endl;
-	return *(new ShrubberyCreationForm(target));
+	return (new ShrubberyCreationForm(target));
 }
 
-AForm&	Intern::wrongInput( std::string target )
+AForm*	Intern::wrongInput( std::string target )
 {
-	static AForm* dummyForm;
-	std::cerr << "Intern cannot create " << target << "." << std::endl;
-	return *dummyForm;
+	(void)target;
+	throw WrongForm();
+	return (new ShrubberyCreationForm(target));
 }
 
 Intern::~Intern()

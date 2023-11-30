@@ -24,12 +24,19 @@ class Intern
 		Intern();
 		Intern( const Intern& other );
 		Intern& operator=( const Intern& other );
-		AForm&	makeForm( std::string str1, std::string str2 );
-		AForm&	Presidential( std::string target );
-		AForm&	Robotomy( std::string target );
-		AForm&	Shrubbery( std::string target );
-		AForm&	wrongInput( std::string target );
+		AForm*	makeForm( std::string str1, std::string str2 );
+		AForm*	Presidential( std::string target );
+		AForm*	Robotomy( std::string target );
+		AForm*	Shrubbery( std::string target );
+		AForm*	wrongInput( std::string target );
 		~Intern();
+
+	class WrongForm : public std::exception
+	{
+		public:
+			WrongForm();
+			virtual const char* what() const throw();
+	};
 };
 
 #endif

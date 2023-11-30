@@ -43,7 +43,7 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 	if (randomValue < 0.5)
 	{
 		std::cout << "Vrrrr VrrRR VRRRRVrrRr VrrrR VrRRr rrRr(Some drilling noises)." << std::endl
-		<< target << " has been robotomized by " << const_cast<Bureaucrat&>(executor).getName() << "successfully."
+		<< target << " has been robotomized by " << executor.getName() << " successfully."
 		<< std::endl;
 	}
 	else

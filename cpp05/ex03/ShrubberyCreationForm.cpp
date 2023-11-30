@@ -66,7 +66,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		<< "                .dFd|bHb.               o" << std::endl
 		<< "      o       .dHFdH|HbTHb.          o /" << std::endl
 		<< "\\  Y  |  \\__,dHHFdHH|HHhoHHb.__Krogg  Y" << std::endl
-		<< "########################################## " << const_cast<Bureaucrat&>(executor).getName() << std::endl;
+		<< "########################################## " << executor.getName() << std::endl;
 		newfile.close();
 	}
 	else

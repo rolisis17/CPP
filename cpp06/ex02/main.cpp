@@ -10,7 +10,7 @@
 int main() {
     std::srand(static_cast<unsigned int>(std::time(0)));
 
-    Base* something = generate();
+    Base *something = generate();
 
     std::cout << "identify: ";
     identify(something);

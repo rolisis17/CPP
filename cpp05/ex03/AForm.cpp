@@ -39,25 +39,25 @@ AForm& AForm::operator=( const AForm& other )
 		const_cast<int&>(GradeToSign) = other.GradeToSign;
 		const_cast<int&>(GradeToExec) = other.GradeToExec;
 	}
-	return (*this);
+	return *(this);
 }
 
-std::string	AForm::getName( void )
+std::string	AForm::getName( void ) const
 {
 	return name;
 }
 
-bool	AForm::getSign( void )
+bool	AForm::getSign( void ) const
 {
 	return sign;
 }
 
-int	AForm::getGradeToSign( void )
+int	AForm::getGradeToSign( void ) const
 {
 	return GradeToSign;
 }
 
-int	AForm::getGradeToExec( void )
+int	AForm::getGradeToExec( void ) const
 {
 	return GradeToExec;
 }
@@ -80,20 +80,20 @@ void	AForm::beSign( Bureaucrat& bu )
 
 void		AForm::checkExecute( Bureaucrat const & executor )
 {
-	if (sign == true && const_cast<Bureaucrat&>(executor).getGrade() <= GradeToExec)
+	if (sign == true && executor.getGrade() <= GradeToExec)
 	{
 		this->execute(executor);
-		std::cout << const_cast<Bureaucrat&>(executor).getName() << " executed " << name << "." << std::endl;
+		std::cout << executor.getName() << " executed " << name << "." << std::endl;
 	}
 	else if (sign == false)
-		std::cout << name << " is not signed." << std::endl;
+		std::cerr << name << " is not signed." << std::endl;
 	else
 		throw GradeTooLowException();
 }
 
 AForm::~AForm()
 {
-	std::cout << name << " has been deleted." << std::endl;
+	std::cout << name << "(AForm) has been deleted." << std::endl;
 }
 
 AForm::GradeTooHighException::GradeTooHighException()
@@ -103,6 +103,7 @@ AForm::GradeTooHighException::GradeTooHighException()
 AForm::GradeTooLowException::GradeTooLowException()
 {
 }
+
 
 const char* AForm::GradeTooHighException::what() const throw()
 {

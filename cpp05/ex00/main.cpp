@@ -19,7 +19,7 @@ int main()
         bureau2.promo();
         bureau3.promo();
         bureau4.promo();
-        // bureau5.degrade();
+        bureau5.degrade();
 
         std::cout << bureau1.getGrade() << std::endl;
         std::cout << bureau2.getGrade() << std::endl;
