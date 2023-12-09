@@ -11,20 +11,10 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <iomanip>
 
-ScalarConverter::ScalarConverter() {}
+void	toprint(int i, char c, float f, double d);
 
-ScalarConverter::ScalarConverter( const ScalarConverter& other )
-{
-	*this = other;
-}
-
-ScalarConverter& ScalarConverter::operator=( const ScalarConverter& other )
-{
-	if (this != &other)
-		;
-	return (*this);
-}
 
 int	ScalarConverter::inf_handle(std::string str )
 {
@@ -59,46 +49,25 @@ int	ScalarConverter::convert( std::string str )
 	// std::cout << iss.eof() << std::endl;
 	if (str.empty() || inf_handle(str))
 		return 0;
-	if (iss >> i && iss.eof())
+	if ((str.find('.') == std::string::npos) && iss >> i)
 	{
 		c = static_cast<char>(i);
 		f = static_cast<float>(i);
 		d = static_cast<double>(i);
 	
-		if (std::isprint(c))
-			std::cout << "Char: " << c << std::endl;
-		else
-			std::cout << "Char: Non displayable" << std::endl;
-		std::cout << "Int: " << i << std::endl;
-		if (f != 0)
-			std::cout << "Float: " << f << "f" << std::endl
-			<< "Double: " << d << std::endl;
-		else
-			std::cout << "Float: 0.0f" << std::endl
-			<< "Double: 0.0" << std::endl;
+		toprint(i, c, f, d);
 		return 1;
 	}
 	iss.clear();
 	iss.seekg(0);
+	/* std::cout << std::fixed << std::setprecision(str.length() - 3); */
 	if (iss >> d && iss.eof())
 	{
 		i = static_cast<int>(d);
 		c = static_cast<char>(d);
 		f = static_cast<double>(d);
 	
-		if (zerosearch(str, 0))
-			return zerosearch(str, 1);
-		if (std::isprint(c))
-			std::cout << "Char: " << c << std::endl;
-		else
-			std::cout << "Char: Non displayable" << std::endl;
-		std::cout << "Int: " << i << std::endl;
-		if (f != 0)
-			std::cout << "Float: " << f << "f" << std::endl
-			<< "Double: " << d << std::endl;
-		else
-			std::cout << "Float: 0.0f" << std::endl
-			<< "Double: 0.0" << std::endl;
+		toprint(i, c, f, d);
 		return 1;
 	}
 	iss.clear();
@@ -107,30 +76,20 @@ int	ScalarConverter::convert( std::string str )
 	{
 		str.erase(str.length() - 1);
 		std::istringstream iss(str);
-		int		ess;
+	/* 	int		ess;
 		float	rss;
 		iss >> rss;
 		if (iss >> ess && iss.eof())
 			return (convert(str));
 		iss.clear();
-		iss.seekg(0);
-		if((iss >> f && iss.eof()) && (!zerosearch(str, 0)))
+		iss.seekg(0); */
+		if(iss >> f && iss.eof())
  		{
 			i = static_cast<int>(f);
 			c = static_cast<char>(f);
 			d = static_cast<double>(f);
 		
-			if (std::isprint(c))
-				std::cout << "Char: " << c << std::endl;
-			else
-				std::cout << "Char: Non displayable" << std::endl;
-			std::cout << "Int: " << i << std::endl;
-			if (f != 0)
-				std::cout << "Float: " << f << "f" << std::endl
-				<< "Double: " << d << std::endl;
-			else
-				std::cout << "Float: 0.0f" << std::endl
-				<< "Double: 0.0" << std::endl;
+			toprint(i, c, f, d);
 			return 1;
 		}
 	}
@@ -142,27 +101,32 @@ int	ScalarConverter::convert( std::string str )
 		f = static_cast<float>(c);
 		d = static_cast<double>(c);
 	
-		if (std::isprint(c))
-			std::cout << "Char: " << c << std::endl;
-		else
-			std::cout << "Char: Non displayable" << std::endl;
-		std::cout << "Int: " << i << std::endl;
-		if (f != 0)
-			std::cout << "Float: " << f << "f" << std::endl
-			<< "Double: " << d << std::endl;
-		else
-			std::cout << "Float: 0.0f" << std::endl
-			<< "Double: 0.0" << std::endl;
+		toprint(i, c, f, d);
 		return 1;
 	}
-	if (zerosearch(str , 0))
-		zerosearch(str , 1);
+/* 	if (zerosearch(str , 0))
+		zerosearch(str , 1); */
 	else
 		std::cerr << "Invalid Input." << std::endl;
 	return 0;
 }
 
-int	ScalarConverter::zerosearch( std::string str, int f )
+void	toprint(int i, char c, float f, double d)
+{
+	if (std::isprint(c))
+		std::cout << "Char: " << c << std::endl;
+	else
+		std::cout << "Char: Non displayable" << std::endl;
+	std::cout << "Int: " << i << std::endl;
+	if ((d - i) != 0)
+		std::cout << "Float: " << f << "f" << std::endl
+		<< "Double: " << d << std::endl;
+	else
+		std::cout << "Float: " << f << ".0f" << std::endl
+		<< "Double: " << d << ".0" << std::endl;
+}
+
+/* int	ScalarConverter::zerosearch( std::string str, int f )
 {
 	char c;
 	int	finddot = 0;
@@ -206,5 +170,5 @@ int	ScalarConverter::zerosearch( std::string str, int f )
 		return 1;
 	return 0;
 }
-
+ */
 ScalarConverter::~ScalarConverter() {}
