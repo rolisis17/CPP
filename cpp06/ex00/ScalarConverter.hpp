@@ -23,8 +23,6 @@ class ScalarConverter
 		ScalarConverter();
 		ScalarConverter( const ScalarConverter& other );
 		ScalarConverter& operator=( const ScalarConverter& other );
-		static int	inf_handle(std::string str );
-		/* static int	zerosearch( std::string str, int f ); */
 		~ScalarConverter();
 
 	public:

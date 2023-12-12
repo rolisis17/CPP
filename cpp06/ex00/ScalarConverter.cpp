@@ -15,8 +15,7 @@
 
 void	toprint(int i, char c, float f, double d);
 
-
-int	ScalarConverter::inf_handle(std::string str )
+int	inf_handle(std::string str )
 {
 	if (str == "inf" || str == "-inf" || str == "nan" || str == "+inf")
 	{
@@ -45,8 +44,6 @@ int	ScalarConverter::convert( std::string str )
 	float f;
 	double d;
 	
-	// std::cout << (iss >> c) << std::endl;
-	// std::cout << iss.eof() << std::endl;
 	if (str.empty() || inf_handle(str))
 		return 0;
 	if ((str.find('.') == std::string::npos) && iss >> i)
@@ -76,13 +73,7 @@ int	ScalarConverter::convert( std::string str )
 	{
 		str.erase(str.length() - 1);
 		std::istringstream iss(str);
-	/* 	int		ess;
-		float	rss;
-		iss >> rss;
-		if (iss >> ess && iss.eof())
-			return (convert(str));
-		iss.clear();
-		iss.seekg(0); */
+
 		if(iss >> f && iss.eof())
  		{
 			i = static_cast<int>(f);
@@ -104,8 +95,6 @@ int	ScalarConverter::convert( std::string str )
 		toprint(i, c, f, d);
 		return 1;
 	}
-/* 	if (zerosearch(str , 0))
-		zerosearch(str , 1); */
 	else
 		std::cerr << "Invalid Input." << std::endl;
 	return 0;
@@ -126,49 +115,4 @@ void	toprint(int i, char c, float f, double d)
 		<< "Double: " << d << ".0" << std::endl;
 }
 
-/* int	ScalarConverter::zerosearch( std::string str, int f )
-{
-	char c;
-	int	finddot = 0;
-	int	dot = 0;
-	int	counter = 0;
-	// while (str[finddot] && str[finddot] != '.')
-	// 	finddot++;
-	// if (str[finddot].e)
-	// while (str[finddot + 1 + counter] == '0')
-	// 	counter++;
-	std::istringstream iss(str);
-	while (iss >> c && !iss.eof())
-	{
-		if (!dot && c != '.')
-			finddot++;
-		else if (!dot && c == '.')
-		{
-			dot++;
-			continue;
-		}
-		if (dot && c == '0')
-			counter++;
-		else if (dot && c != '0')
-			break;
-	}
-	// std::cout << finddot << std::endl;
-	if (iss.eof())
-	{
-		if (dot && f != 0)
-			return convert(str.substr(0, finddot));
-		else if (dot && f == 0)
-			return 1;
-		// return convert(str);
-	}
-	// while (iss >> c && std::cout << c && !iss.eof() && c == '0')
-		// counter++;
-	// std::cout << counter << std::endl;
-	if (f != 0 && (finddot < 3 && counter > 4))
-		return convert(str.substr(0, finddot));
-	else if (f == 0 && counter > 4)
-		return 1;
-	return 0;
-}
- */
 ScalarConverter::~ScalarConverter() {}

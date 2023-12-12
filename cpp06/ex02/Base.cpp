@@ -56,24 +56,24 @@ void	identify(Base& p)
 {
     try
     {
-        if (dynamic_cast<A*>(&p) != NULL)
-            std::cout << "A" << std::endl;
+        A& ref = dynamic_cast<A&>(p);
+        std::cout << "A" << std::endl;
     }
     catch(std::exception& e)
     {
     }
     try
     {
-        if (dynamic_cast<B*>(&p) != NULL)
-            std::cout << "B" << std::endl;
+        B& ref = dynamic_cast<B&>(p);
+        std::cout << "B" << std::endl;
     }
     catch(std::exception& e)
     {
     }
     try
     {
-        if (dynamic_cast<C*>(&p) != NULL)
-            std::cout << "C" << std::endl;
+        C& ref = dynamic_cast<C&>(p);
+        std::cout << "C" << std::endl;
     }
     catch(std::exception& e)
     {

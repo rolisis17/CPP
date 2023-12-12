@@ -1,6 +1,15 @@
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
+
+#include <algorithm>
+
 template <typename T>
-void    easyfind(<T> cnt, int i)
+int    easyfind(const T& cnt, int i)
 {
-    int that = cnt[i];
-    if (that)
-};
+    if (std::find(cnt.begin(), cnt.end(), i) != cnt.end())
+        return (std::distance(cnt.begin(), std::find(cnt.begin(), cnt.end(), i)));
+
+    return -1;
+}
+
+#endif
