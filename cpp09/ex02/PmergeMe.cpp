@@ -114,7 +114,7 @@ void	sortList(std::list<int>& list)
 	bool odd_flag = false;
 	int odd;
     if (list.size() <= 1) {
-        std::cout << "Sequence too short." << std::cout;
+        std::cout << "Sequence too short." << std::endl;
     }
 	std::list<std::pair<int, int> > pairs;
 	std::list<int>::iterator it = list.begin();
@@ -175,10 +175,10 @@ std::vector<int> createVector(std::vector<std::pair<int, int> > pairs)
 	return list;
 }
 
-std::vector<int>::iterator binarySearchVector(std::vector<int>& list, int target)
+std::vector<int>::iterator binarySearchVector(std::vector<int>& vec, int target)
 {
-	std::vector<int>::iterator left = list.begin();
-	std::vector<int>::iterator right = list.end();
+	std::vector<int>::iterator left = vec.begin();
+	std::vector<int>::iterator right = vec.end();
 	while (left != right) {
 		std::vector<int>::iterator mid = left;
 		std::advance(mid, std::distance(left, right) / 2);
@@ -195,19 +195,19 @@ std::vector<int>::iterator binarySearchVector(std::vector<int>& list, int target
     return left;
 }
 
-std::vector<std::pair<int, int> > merge_sortVector(std::vector<std::pair<int, int> > list)
+std::vector<std::pair<int, int> > merge_sortVector(std::vector<std::pair<int, int> > vec)
 {
-	if (list.size() <= 1)
-		return list;
+	if (vec.size() <= 1)
+		return vec;
 	std::vector<std::pair<int, int> > left, right;
-	size_t half = list.size() / 2;
-	std::vector<std::pair<int, int> >::iterator it;
-	for (it = list.begin(); it != list.end(); ++it)
+	size_t half = vec.size() / 2;
+	// std::vector<std::pair<int, int> >::iterator it;
+	for (size_t i = 0; i < (vec.size() - 1); i++)
 	{
 		if (half-- > 0)
-			left.push_back(*it);
+			left.push_back(vec[i]);
 		else
-			right.push_back(*it);
+			right.push_back(vec[i]);
 	}
 	left = merge_sortVector(left);
 	right = merge_sortVector(right);
@@ -219,26 +219,26 @@ void	sortVector(std::vector<int>& vec)
 	bool odd_flag = false;
 	int odd;
     if (vec.size() <= 1) {
-        std::cout << "Sequence too short." << std::cout;
+        std::cout << "Sequence too short." << std::endl;
     }
 	std::vector<std::pair<int, int> > pairs;
-	std::vector<int>::iterator it = vec.begin();
-	while (it != vec.end())
+	// std::vector<int>::iterator it = vec.begin();
+	size_t i = 0;
+	while (i < vec.size() - 1)
 	{
-		int a = *it++;
-		if (it == vec.end())
+		int a = vec[i++];
+		if (i == vec.size() - 1)
 		{
 			odd = a;
 			odd_flag = true;
 			break ;
 		}
-		int b = *it++;
+		int b = vec[i++];
 		pairs.push_back(std::make_pair(std::max(a, b), std::min(a, b)));
 	}
     pairs = merge_sortVector(pairs);
 	vec = createVector(pairs);
 	vec.insert(vec.begin(), pairs.front().second);
-	// vec.push_front(pairs.front().second);
 	pairs.erase(pairs.begin());
 	if (odd_flag)
 		vec.insert(binarySearchVector(vec, odd), odd);
@@ -248,6 +248,30 @@ void	sortVector(std::vector<int>& vec)
 		vec.insert(binarySearchVector(vec, target), target);
 		pairs.erase(pairs.begin());
 	}
+}
+
+int CheckOrderVec(std::vector<int> vec)
+{
+	for (size_t a = 0; a < vec.size() - 2; ++a)
+	{
+		if (vec[a] > vec[a+1])
+			return 1;
+	}
+	return 0;
+}
+
+int CheckOrderLst(std::list<int> lst)
+{
+	std::list<int>::iterator it;
+	for (it = lst.begin(); it != lst.end(); ++it)
+	{
+		std::list<int>::iterator next = ++it;
+		if (it == lst.end())
+			break;
+		else if (*it < *next)
+			return 1;
+	}
+	return 0;
 }
 
 PmergeMe::PmergeMe(int size, char **av){
@@ -266,10 +290,12 @@ PmergeMe::PmergeMe(int size, char **av){
 
 	long long startVector = getCurrentTimeMicros();
     sortVector(vec);
+	// std::cout << CheckOrder(vec) << std::endl;
 	double elapsedVector = static_cast<double>(getCurrentTimeMicros() - startVector) / CLOCKS_PER_SEC;
 
 	long long startList = getCurrentTimeMicros();
     sortList(lst);
+	// std::cout << CheckOrderLst(lst) << std::endl;
 	double elapsedList = static_cast<double>(getCurrentTimeMicros() - startList) / CLOCKS_PER_SEC;
 
 
@@ -286,6 +312,7 @@ PmergeMe::PmergeMe(int size, char **av){
 	std::cout << "Time to process a range of " << size << " elements with std::vector : " << elapsedVector << " us" << std::endl;
 	std::cout << "Time to process a range of " << size << " elements with std::list : " << elapsedList << " us" << std::endl;
 }
+
 // void printList(std::list<std::pair<int, int> > list)
 // {
 // 	std::list<std::pair<int, int> >::iterator it;
