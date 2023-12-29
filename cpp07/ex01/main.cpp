@@ -16,6 +16,14 @@ void cadd1(char& a)
     // std::cout << "after: " << a << std::endl;
 }
 
+
+void sadd1(std::string& a)
+{
+    // std::cout << "before: " <<  a << std::endl;
+    a = a + 's';
+    // std::cout << "after: " << a << std::endl;
+}
+
 int main()
 {
     int array[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -26,5 +34,9 @@ int main()
     iter<char>(array2, 10, cadd1);
     for (int i = 0; i < 10; ++i)
         std::cout << array2[i] << std::endl;
+    std::string array3[10] = {"a", "b", "c", "d", "E", "f", "g", "H", "I", "J"};
+    iter<std::string>(array3, 10, sadd1);
+    for (int i = 0; i < 10; ++i)
+        std::cout << array3[i] << std::endl;
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <list>
 #include "MutantStack.hpp"
 
@@ -33,7 +34,7 @@ int main()
     mstack.push_back(5);
     mstack.push_back(17);
     std::cout << mstack.back() << std::endl;
-    mstack.erase(mstack.end());
+    mstack.erase(mstack.end() - 1);
     // vector you can erase end() and the container will grab the last element.
     // so if you use end() - 1 the result will be the same.
     // same does not work with list.

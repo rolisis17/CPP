@@ -4,7 +4,13 @@
 
 int main()
 {
-    Array<int> data(8);
+    Array<const char*> des(5);
+    for (int z = 0; z < des.size(); ++z) {
+        des[z] = "as";
+        std::cout << des[z] << std::endl;
+    }
+
+    Array<int> data(3);
     Array<int> myArray(5);
     
     for (int i = 0; i < myArray.size(); ++i) {
@@ -22,9 +28,9 @@ int main()
     Array<std::string> data2(8);
     Array<std::string> myArray2(5);
     
-    char a = 'a';
+    std::string a = "a";
     for (int k = 0; k < myArray2.size(); ++k) {
-        myArray2[k] = a++;
+        myArray2[k] = a + 's';
     }
 
     for (int v = 0; v < myArray2.size(); ++v) {

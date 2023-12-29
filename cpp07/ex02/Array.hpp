@@ -14,7 +14,7 @@ class Array
 		Array( const Array<T>& other );
 		Array<T>& operator=( const Array<T>& other );
 		~Array();
-		T& operator[](int index);
+		T& operator[](int index) const;
 		int	size( void ) const;
 };
 

@@ -43,7 +43,7 @@ Array<T>::~Array()
 }
 
 template <typename T>
-T& Array<T>::operator[](int index)
+T& Array<T>::operator[](int index) const
 {
 	if (index >= 0 && index < arr_lenght)
 		return arr[index];
