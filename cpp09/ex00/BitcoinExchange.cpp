@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <ctime>
+#include <cstring>
 
 int	findcomma(std::string str, int locker) {
 	std::string tofind;
@@ -19,10 +21,6 @@ int	findcomma(std::string str, int locker) {
 	return -1;
 }
 
-#include <iostream>
-#include <ctime>
-#include <cstring>
-
 bool isValidDate(const std::string& dateString, tm& date) {
     std::memset(&date, 0, sizeof(struct tm));
 
@@ -33,7 +31,7 @@ bool isValidDate(const std::string& dateString, tm& date) {
 	if (date.tm_year > 2023)
 		std::cerr << "\33[42mTHIS IS NOT A TIME MACHINE\33[0m" << std::endl;
 
-    if (date.tm_year < 1900  || date.tm_mon < 1 || date.tm_mon > 12 || date.tm_mday < 1 || date.tm_mday > 31) {
+    if (date.tm_year < 1900  || date.tm_mon < 1 || date.tm_mon > 12 || date.tm_mday < 1 || date.tm_mday > 31 || (date.tm_mon == 2 && (date.tm_mday == 30 || date.tm_mday == 31))) {
 		return false;
     }
 

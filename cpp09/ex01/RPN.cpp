@@ -17,6 +17,10 @@ int RPN::evaluate(const std::string& expression) {
 			std::istringstream ss(token);
 			int nbr = 0;
 			ss >> nbr;
+			if (nbr > 9) {
+				std::cerr << "Error: number too large: " << token << std::endl;
+				return 1;
+			}
 			operandStack.push(nbr);
 		} else if (isOperator(token)) {
 			if (operandStack.size() < 2) {

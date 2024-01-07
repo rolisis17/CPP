@@ -177,22 +177,21 @@ std::vector<int> createVector(std::vector<std::pair<int, int> > pairs)
 
 std::vector<int>::iterator binarySearchVector(std::vector<int>& vec, int target)
 {
-	std::vector<int>::iterator left = vec.begin();
-	std::vector<int>::iterator right = vec.end();
-	while (left != right) {
-		std::vector<int>::iterator mid = left;
-		std::advance(mid, std::distance(left, right) / 2);
+    size_t left = 0;
+    size_t right = vec.size();
 
-		if (*mid == target)
-			return mid;
-		else if (*mid < target) {
-			++mid;
-			left = mid;
-		}
-		else
-			right = mid;
-	}
-    return left;
+    while (left < right) {
+        size_t mid = left + (right - left) / 2;
+
+        if (vec[mid] == target)
+            return vec.begin() + mid;
+        else if (vec[mid] < target)
+            left = mid + 1;
+        else
+            right = mid;
+    }
+
+    return vec.begin() + left;
 }
 
 std::vector<std::pair<int, int> > merge_sortVector(std::vector<std::pair<int, int> > vec)
@@ -202,7 +201,7 @@ std::vector<std::pair<int, int> > merge_sortVector(std::vector<std::pair<int, in
 	std::vector<std::pair<int, int> > left, right;
 	size_t half = vec.size() / 2;
 	// std::vector<std::pair<int, int> >::iterator it;
-	for (size_t i = 0; i < (vec.size() - 1); i++)
+	for (size_t i = 0; i < (vec.size()); i++)
 	{
 		if (half-- > 0)
 			left.push_back(vec[i]);
@@ -224,10 +223,10 @@ void	sortVector(std::vector<int>& vec)
 	std::vector<std::pair<int, int> > pairs;
 	// std::vector<int>::iterator it = vec.begin();
 	size_t i = 0;
-	while (i < vec.size() - 1)
+	while (i < vec.size())
 	{
 		int a = vec[i++];
-		if (i == vec.size() - 1)
+		if (i == vec.size())
 		{
 			odd = a;
 			odd_flag = true;
@@ -252,7 +251,7 @@ void	sortVector(std::vector<int>& vec)
 
 int CheckOrderVec(std::vector<int> vec)
 {
-	for (size_t a = 0; a < vec.size() - 2; ++a)
+	for (size_t a = 0; a < vec.size() - 1; ++a)
 	{
 		if (vec[a] > vec[a+1])
 			return 1;
@@ -275,6 +274,10 @@ int CheckOrderLst(std::list<int> lst)
 }
 
 PmergeMe::PmergeMe(int size, char **av){
+	if( size < 2 ) {
+		std::cerr << "not enouth numbers to sort." << std::endl;
+		return;
+	}
 	std::vector<int> vec = convertCharArrayToVector(av, size);
 	std::list<int> lst = convertCharArrayToList(av, size);
 
@@ -290,12 +293,12 @@ PmergeMe::PmergeMe(int size, char **av){
 
 	long long startVector = getCurrentTimeMicros();
     sortVector(vec);
-	// std::cout << CheckOrder(vec) << std::endl;
+	std::cout << CheckOrderVec(vec) << std::endl;
 	double elapsedVector = static_cast<double>(getCurrentTimeMicros() - startVector) / CLOCKS_PER_SEC;
 
 	long long startList = getCurrentTimeMicros();
     sortList(lst);
-	// std::cout << CheckOrderLst(lst) << std::endl;
+	std::cout << CheckOrderLst(lst) << std::endl;
 	double elapsedList = static_cast<double>(getCurrentTimeMicros() - startList) / CLOCKS_PER_SEC;
 
 
